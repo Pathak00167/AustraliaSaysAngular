@@ -1,0 +1,60 @@
+<!-- userslist.component.html -->
+<div class="wrapper">
+    <!-- Sidebar -->
+    <app-sidenav></app-sidenav>
+    <!-- End Sidebar -->
+  
+    <div class="main-panel">
+      <app-nav></app-nav>
+  
+      <div class="container">
+        <div class="page-inner">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="d-flex align-items-center">
+                    <h4 class="card-title">Users List</h4>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="add-row" class="display table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>User Image</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phone Number</th>
+                        
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>
+                                <img 
+                                  [src]="'https://localhost:7237/' + user.imageUrl" 
+                                  alt="User Image" 
+                                  width="100" 
+                                  height="100" 
+                                  class="rounded-circle"
+                                >
+                              </td>
+                              
+                          <td>{{ user.name }}</td>
+                          <td>{{ user.email }}</td>
+                          <td>{{ user.phonenumber }}</td>
+                         
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

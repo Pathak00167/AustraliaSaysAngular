@@ -1,0 +1,85 @@
+<!-- userslist.component.html -->
+<div class="wrapper">
+    <!-- Sidebar -->
+    <app-sidenav></app-sidenav>
+    <!-- End Sidebar -->
+  
+    <div class="main-panel">
+      <app-nav></app-nav>
+  
+      <div class="container">
+        <div class="page-inner">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h4 class="card-title">Category List</h4>
+                    <!-- Create Button -->
+                    <button class="btn btn-primary btn-sm" (click)="openCreateCategoryModal(createCategoryDialog)">
+                      <i class="bi bi-plus"></i> Create
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="add-row" class="display table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>Category Id</th>
+                          <th>Name</th>
+                          <th style="width: 30%">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let category of categories">
+                          <td>{{ category.id }}</td>
+                          <td>{{ category.categoryName }}</td>
+                          <td>
+                            <div class="form-button-action">
+                              <button
+                                type="button"
+                                data-bs-toggle="tooltip"
+                                class="btn btn-link btn-primary btn-lg"
+                                title="Edit Task"
+                              >
+                                <i class="fa fa-edit"></i>
+                              </button>
+                              <button
+                                type="button"
+                                data-bs-toggle="tooltip"
+                                class="btn btn-link btn-danger" 
+                                (click)="deleteCategory(category.id)"
+                                title="Remove"
+                              >
+                                <i class="fa fa-times"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Create -->
+<ng-template #createCategoryDialog>
+  <h2 mat-dialog-title style="color: blue;">Create Category</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="Category Name" [(ngModel)]="newCategory.CategoryName">
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()" style="margin-right: 10px;">Cancel</button>
+    <button mat-button (click)="addCategory()">Save</button>
+  </mat-dialog-actions>
+</ng-template>
+
