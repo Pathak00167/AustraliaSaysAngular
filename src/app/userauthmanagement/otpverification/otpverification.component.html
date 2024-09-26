@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center align-items-center vh-100" 
+     style="background: radial-gradient(circle, #3A3A3A 0%, #303030 100%);">
+  <div class="card p-4" 
+       style="width: 350px; background-color: #424242; border-radius: 12px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);">
+    <div class="card-body">
+      <!-- Icon for OTP Verification -->
+      <div class="text-center mb-4">
+        <i class="bi bi-shield-lock" style="font-size: 3rem; color: #fff;"></i>
+      </div>
+
+      <!-- Title and Subtitle -->
+      <h4 class="text-center mb-2" style="color: #fff;">OTP Verification</h4>
+      <p class="text-center" style="color: #cfcfcf;">Enter the 6-digit code sent to your email</p>
+
+      <!-- OTP Form -->
+      <form [formGroup]="otpForm" (ngSubmit)="submitOtp()">
+        <div class="form-group">
+          <label for="otp" style="color: #FFD700;">Enter OTP</label>
+          <input formControlName="otp" type="text" id="otp" maxlength="6"
+                 class="form-control text-white text-center"
+                 placeholder="123456" style="background-color: #555; border: none; border-radius: 8px; font-size: 1.25rem;" required>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" 
+                class="btn btn-block mt-4" 
+                style="background-color: #FF5722; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">
+          Verify OTP
+        </button>
+      </form>
+
+      <!-- Resend OTP Option -->
+      <div class="text-center mt-3">
+        <p style="color: #cfcfcf;">Didn't receive the code? <a href="#" style="color: #FF5722;">Resend OTP</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+

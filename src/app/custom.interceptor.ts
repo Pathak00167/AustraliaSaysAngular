@@ -1,6 +1,15 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core'; // For dependency injection in functional interceptors
+import { LoaderService } from './shared/loader.service'; // Adjust the path as needed
+import { finalize } from 'rxjs/operators';
 
 export const customInterceptor: HttpInterceptorFn = (req, next) => {
+
+  const loaderService = inject(LoaderService);
+
+  // Start showing the loader
+  loaderService.show();
+
  
   const mytoken =localStorage.getItem('token');
   const cloneRequest=req.clone({
@@ -8,5 +17,7 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
    Authorization: `Bearer ${mytoken}` 
     }
   })
-  return next(cloneRequest);
+ return next(cloneRequest).pipe(
+    finalize(() => loaderService.hide()) // Hide the loader once the request is done
+  );
 };

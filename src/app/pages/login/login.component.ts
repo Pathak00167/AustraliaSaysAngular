@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { ApiService } from './../../api.service'; 
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private ApiService: ApiService, private router: Router) {
+  constructor(private fb: FormBuilder, private ApiService: ApiService, private router: Router,private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -28,16 +29,17 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.ApiService.login(this.loginForm.value).subscribe(response => {
         if (response.role === 'Admin') {
-          console.log(response.token)
-          alert("login successfully")
+          this.toastr.success('login successful')
           // Save the token and navigate to the admin page
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', response.role);
           this.router.navigate(['dashboard']);
+        
         } else {
           this.errorMessage = 'Access denied. Only admin can log in.';
         }
       }, error => {
+        this.toastr.warning('Login failed')
         this.errorMessage = 'Login failed. Please check your credentials and try again.';
       });
     }

@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-center align-items-center vh-100" 
+     style="background: radial-gradient(circle, #3A3A3A 0%, #303030 100%);">
+  <div class="card p-4" 
+       style="width: 400px; background-color: #424242; border-radius: 12px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);">
+    <div class="card-body">
+      <!-- Title -->
+      <h4 class="text-center mb-4" style="color: #fff;">Create Your Profile</h4>
+
+      <!-- Profile Picture Upload -->
+      <div class="text-center mb-4">
+        <label for="profilePic" class="d-block mb-2" style="color: #FFD700;">Profile Picture</label>
+        <input type="file" id="profilePic" (change)="onFileSelected($event)" 
+               accept="image/*" style="display: none;" />
+        <label for="profilePic" 
+               style="border: 2px dashed #4CAF50; padding: 10px; border-radius: 8px; display: inline-block; cursor: pointer;">
+          <i class="bi bi-upload" style="font-size: 1.5rem; color: #4CAF50;"></i> Upload Picture
+        </label>
+      </div>
+      
+
+      <!-- Name Input -->
+      <div class="form-group mb-3">
+        <label for="name" style="color: #FFD700;">Name</label>
+        <input formControlName="name" type="text" id="name" 
+               class="form-control text-white" placeholder="Enter your name"
+               style="background-color: #555; border: none; border-radius: 8px;" required>
+      </div>
+
+      <!-- Date of Birth Input -->
+      <div class="form-group mb-3">
+        <label for="dob" style="color: #FFD700;">Date of Birth</label>
+        <input formControlName="dob" type="date" id="dob" 
+               class="form-control text-white" 
+               style="background-color: #555; border: none; border-radius: 8px;" required>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" 
+              class="btn btn-block mt-4" 
+              style="background-color: #FF5722; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">
+        Create Profile
+      </button>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ import { ApiService } from '../../api.service';
 })
 export class UserslistComponent  implements OnInit{
   users: any[] = [];
+   baseurl= 'https://localhost:44364/'
 
   constructor(private apiService: ApiService) {}
 

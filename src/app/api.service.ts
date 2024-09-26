@@ -44,7 +44,31 @@ export class ApiService {
   clearAllNotifications(): Observable<any> {
     return this.http.post(`${this.apiUrl}/Admin/MarkAllNotificationsAsSeen`, {});
   }
-  
+
+  getArticles(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Admin/ArticlesList`);
+  }
+
+  addArticle(article: any): Observable<any> {
+    debugger
+    return this.http.post(`${this.apiUrl}/Admin/AddArticle`, article);
+  }
+
+  updateArticle(id: number, article: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, article);
+  }
+
+  deleteArticle(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  registerUser(user: { email: string, password: string }): Observable<any> {debugger
+    return this.http.post<any>(`${this.apiUrl}/Auth/Register-User`, user);
+  }
+
+  VerifyOtp(user: { email: string, otp: string }): Observable<any> {debugger
+    return this.http.post<any>(`${this.apiUrl}/Auth/Verify-Otp`, user);
+  }
 }
 
 

@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { SidenavComponent } from "../sidenav/sidenav.component";
 import { NavComponent } from "../nav/nav.component";
 import { ApiService } from '../../api.service';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -28,7 +30,7 @@ export class CategoriesComponent implements OnInit {
   newCategory = { CategoryName: '' };  
   private dialogRef: MatDialogRef<any> | null = null;  
 
-  constructor(private categoryService: ApiService, private dialog: MatDialog) {}
+  constructor(private categoryService: ApiService, private dialog: MatDialog,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -61,6 +63,7 @@ export class CategoriesComponent implements OnInit {
         this.dialogRef?.close();
         this.loadCategories();  
         console.log('Category added successfully', response);
+        this.toastr.success('Category added successfully!', 'Success');
       },
       error => {
         console.error('Error adding category', error);
@@ -74,18 +77,41 @@ export class CategoriesComponent implements OnInit {
   }
 
   
-deleteCategory(id: number): void {
-  if (confirm('Are you sure you want to delete this category?')) {
-    this.categoryService.deleteCategory(id).subscribe(
-      response => {
-        this.loadCategories();
-        console.log('Category deleted successfully', response);
-      },
-      error => {
-        console.error('Error deleting category', error);
+
+ 
+  deleteCategory(id: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to delete this category?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.deleteCategory(id).subscribe(
+          response => {
+            this.loadCategories();
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your category has been deleted.',
+              icon: 'success',
+              timer: 3000, // Automatically closes after 3 seconds
+              showConfirmButton: false
+            });
+          },
+          error => {
+            console.error('Error deleting category', error);
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an issue deleting the category.',
+              icon: 'error'
+            });
+          }
+        );
       }
-    );
+    });
   }
-}
 
 }

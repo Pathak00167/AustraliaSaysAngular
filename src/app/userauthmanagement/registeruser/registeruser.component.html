@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center align-items-center vh-100" 
+     style="background: radial-gradient(circle, #3A3A3A 0%, #303030 100%);">
+  <div class="card p-4" 
+       style="width: 350px; background-color: #424242; border-radius: 12px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);">
+    <div class="card-body">
+      <div class="text-center mb-4">
+        <i class="bi bi-person-circle" 
+           style="font-size: 3rem; color: #fff;"></i>
+      </div>
+      
+      <h4 class="text-center mb-4" style="color: #fff;">Create Your Account</h4>
+      
+      <!-- Progress Bar -->
+      <mat-progress-bar mode="determinate" value="25" 
+                        style="background-color: #4CAF50; height: 4px; border-radius: 4px;"></mat-progress-bar>
+      
+      <form [formGroup]="form" (ngSubmit)="nextStep()">
+        <!-- Email Field -->
+        <div class="form-group mt-4">
+          <label for="email" style="color: #FFD700;">Email</label> <!-- Changed color to gold for better visibility -->
+          <input formControlName="email" type="email" id="email" 
+                 class="form-control text-white" placeholder="Enter your email"
+                 style="background-color: #555; border: none; border-radius: 8px;" required>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group mt-3">
+          <label for="password" style="color: #FFD700;">Password</label> <!-- Match the label color for uniformity -->
+          <input formControlName="password" type="password" id="password" 
+                 class="form-control text-white" placeholder="Create a password"
+                 style="background-color: #555; border: none; border-radius: 8px;" required>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" 
+                class="btn btn-block mt-4" 
+                style="background-color: #FF5722; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">
+          Next
+        </button> <!-- Changed button background to orange for a vibrant look -->
+      </form>
+    </div>
+  </div>
+</div>

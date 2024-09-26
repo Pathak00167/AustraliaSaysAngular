@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center align-items-center vh-100" 
+     style="background: radial-gradient(circle, #3A3A3A 0%, #303030 100%);">
+  <div class="card p-4" 
+       style="width: 350px; background-color: #424242; border-radius: 12px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);">
+    <div class="card-body">
+      <!-- Icon for Username Creation -->
+      <div class="text-center mb-4">
+        <i class="bi bi-person-fill" style="font-size: 3rem; color: #fff;"></i>
+      </div>
+
+      <!-- Title and Subtitle -->
+      <h3 class="text-center mb-2" style="color: #fff;">Unique Username</h3>
+      <p class="text-center" style="color: #cfcfcf;">Choose a unique username to identify </p>
+
+      <!-- Username Form -->
+      <form [formGroup]="usernameForm" (ngSubmit)="submitUsername()">
+        <div class="form-group">
+          <label for="username" style="color: #FFD700;">Username</label>
+          <input formControlName="username" type="text" id="username" 
+                 class="form-control text-white" placeholder="Enter your username"
+                 style="background-color: #555; border: none; border-radius: 8px;" required>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="button-container" style="display: flex; justify-content: center;">
+          <button type="submit" 
+                  class="btn btn-block mt-4" 
+                  style="background-color: #FF5722; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">
+              Submit
+          </button>
+      </div>
+      
+      </form>
+
+      <!-- Additional Info -->
+      <!-- <div class="text-center mt-3">
+        <p style="color: #cfcfcf;">Already have a username? <a href="#" style="color: #FF5722;">Login</a></p>
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+<div class="wrapper">
+    <app-sidenav></app-sidenav>
+    <div class="main-panel">
+        <app-nav></app-nav>
+        <div class="container">
+            <div class="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h4 class="card-title">Articles List</h4>
+                                    <button class="btn btn-primary btn-sm" (click)="openCreateArticleModal(createArticleDialog)">
+                                        <i class="bi bi-plus"></i> Create Article
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Article Image</th>
+                                                <th>Title</th>
+                                                <th>Description</th>
+                                                <th style="width: 30%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let article of articles">
+                                                <td>
+                                                    <img 
+                                                      [src]="baseurl + article.articleImage" 
+                                                      alt="User Image" 
+                                                      width="100" 
+                                                      height="100" 
+                                                      class="rounded-circle"
+                                                    >
+                                                  </td>
+                                                <td>{{ article.articleTitle }}</td>
+                                                <td>{{ article.description }}</td>
+                                                <td>
+                                                    <div class="form-button-action">
+                                                        <button
+                                                            type="button"
+                                                            data-bs-toggle="tooltip"
+                                                            class="btn btn-link btn-primary btn-lg"
+                                                            title="Edit Article"
+                                                            (click)="(article)"
+                                                        >
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            data-bs-toggle="tooltip"
+                                                            class="btn btn-link btn-danger"
+                                                            (click)="deleteArticle(article.id)"
+                                                            title="Remove"
+                                                        >
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Article Modal -->
+<ng-template #createArticleDialog>
+    <div class="dialog-container">
+        <h5 mat-dialog-title class="dialog-title text-center">Create Article</h5>
+        <h4 class="dialog-subtitle text-center">Please fill in the details below:</h4>
+        <mat-dialog-content class="dialog-content">
+            <form [formGroup]="articleForm" class="article-form">
+                <!-- Image Preview -->
+                <div *ngIf="selectedFile" class="image-preview">
+                    <img [src]="imagePreview" alt="Image preview" class="preview-image" />
+                </div>
+
+                <!-- Category -->
+                <mat-form-field appearance="outline" class="full-width mat-field-custom">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="categoryId" required>
+                        <mat-option *ngFor="let category of categories" [value]="category.id">
+                            {{ category.categoryName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="articleForm.get('categoryId')?.hasError('required')">
+                        Category is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Title -->
+                <mat-form-field appearance="outline" class="full-width mat-field-custom">
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="articleTitle" placeholder="Enter article title" required>
+                    <mat-error *ngIf="articleForm.get('articleTitle')?.hasError('required')">
+                        Title is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Description -->
+                <mat-form-field appearance="outline" class="full-width mat-field-custom">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="articleDescription" placeholder="Enter article description" required></textarea>
+                    <mat-error *ngIf="articleForm.get('articleDescription')?.hasError('required')">
+                        Description is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Image Upload -->
+                <div class="full-width file-upload">
+                    <label for="file" class="file-label">Image</label>
+                    <input id="file" type="file" class="file-input" (change)="onFileSelected($event)" required>
+                    <mat-error *ngIf="!selectedFile">Image is required</mat-error>
+                </div>
+            </form>
+        </mat-dialog-content>
+
+        <mat-dialog-actions align="end" class="dialog-actions">
+            <button mat-button class="cancel-button" (click)="closeDialog()">Cancel</button>
+            <button mat-button class="save-button" [disabled]="articleForm.invalid || !selectedFile" (click)="saveArticle()">Save</button>
+        </mat-dialog-actions>
+    </div>
+</ng-template>
+
+
+
+
