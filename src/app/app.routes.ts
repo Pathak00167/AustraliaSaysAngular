@@ -3,6 +3,7 @@ import { LoginComponent } from './pages/login/login.component';  // Assuming log
 import { DashboardComponent } from './pages/dashboard/dashboard.component';  // Assuming dashboard is in dashboard folder
 import { UserslistComponent } from './pages/userslist/userslist.component';
 import { adminGuard } from './admin.guard'; 
+import { RegistrationGuard } from './Gaurds/registration.guard';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { RegisteruserComponent } from './userauthmanagement/registeruser/registeruser.component';
@@ -19,8 +20,8 @@ export const routes: Routes = [
   { path: 'categorieslist', component: CategoriesComponent,canActivate:[adminGuard] },
   {path: 'articles', component:ArticlesComponent,canActivate:[adminGuard]},
   { path: 'register-step-1', component: RegisteruserComponent },
-  { path: 'otp-verification', component: OtpverificationComponent },
-  { path: 'add-username', component: AddusernameComponent },
-  { path: 'enhance-profile', component: EnhanceprofileComponent },
+  { path: 'otp-verification', component: OtpverificationComponent,canActivate:[RegistrationGuard] },
+  { path: 'add-username', component: AddusernameComponent,canActivate:[RegistrationGuard] },
+  { path: 'enhance-profile', component: EnhanceprofileComponent,canActivate:[RegistrationGuard] },
   { path: '**', redirectTo: 'login' } 
 ];
