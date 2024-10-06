@@ -3,7 +3,7 @@ import { inject } from '@angular/core'; // For dependency injection in functiona
 import { LoaderService } from './shared/loader.service'; // Adjust the path as needed
 import { finalize } from 'rxjs/operators';
 
-export const customInterceptor: HttpInterceptorFn = (req, next) => {
+export const customInterceptor: HttpInterceptorFn = (req, next) => {debugger
 
   const loaderService = inject(LoaderService);
 

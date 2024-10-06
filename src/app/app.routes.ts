@@ -20,8 +20,8 @@ export const routes: Routes = [
   { path: 'categorieslist', component: CategoriesComponent,canActivate:[adminGuard] },
   {path: 'articles', component:ArticlesComponent,canActivate:[adminGuard]},
   { path: 'register-step-1', component: RegisteruserComponent },
-  { path: 'otp-verification', component: OtpverificationComponent,canActivate:[RegistrationGuard] },
-  { path: 'add-username', component: AddusernameComponent,canActivate:[RegistrationGuard] },
-  { path: 'enhance-profile', component: EnhanceprofileComponent,canActivate:[RegistrationGuard] },
+  { path: 'otp-verification', component: OtpverificationComponent,canActivate:[RegistrationGuard], data: { stepRequired: 1 }},
+  { path: 'add-username', component: AddusernameComponent,canActivate:[RegistrationGuard] , data: { stepRequired: 2 }},
+  { path: 'enhance-profile', component: EnhanceprofileComponent,canActivate:[RegistrationGuard], data: { stepRequired: 3 } },
   { path: '**', redirectTo: 'login' } 
 ];

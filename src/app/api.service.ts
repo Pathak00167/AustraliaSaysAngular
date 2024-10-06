@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,18 @@ export class ApiService {
   VerifyOtp(user: { email: string, otp: string }): Observable<any> {debugger
     return this.http.post<any>(`${this.apiUrl}/Auth/Verify-Otp`, user);
   }
+  UserUniqueName(user: FormData): Observable<any> {debugger
+    return this.http.patch<any>(`${this.apiUrl}/User/Update-UserProfile`, user);
+  }
+
+  getUserIdFromToken(): string  {debugger
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      console.log('Decoded Token:', decodedToken);
+      return decodedToken.sub;  // Adjust based on your token structure
+    }
+    return "";
 }
 
-
+}

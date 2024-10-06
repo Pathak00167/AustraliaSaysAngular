@@ -10,12 +10,11 @@ export class RegistrationGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const stepRequired = route.data['stepRequired']; // Get required step from route data
-    const currentStepCompleted = this.registrationService.getRegistrationData();
+    const currentStepCompleted = this.registrationService.getCurrentStep(); // Get current step from service
 
     if (currentStepCompleted >= stepRequired) {
-      return true; // Allow navigation if the required step is completed
+      return true; 
     } else {
-      // Redirect based on which step the user should be on
       switch (currentStepCompleted) {
         case 0:
           this.router.navigate(['/register-step-1']);
