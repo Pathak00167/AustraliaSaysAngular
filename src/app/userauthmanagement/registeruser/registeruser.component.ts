@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ApiService } from '../../api.service';   // Import your ApiService
 import { ToastrService } from 'ngx-toastr';  // Assuming Toastr for feedback
+import { RegistrationprocessService } from '../../Services/registrationprocess.service';
 
 @Component({
   selector: 'app-registeruser',
@@ -24,7 +25,8 @@ export class RegisteruserComponent {
     private fb: FormBuilder, 
     private router: Router, 
     private apiService: ApiService, // Inject ApiService
-    private toastr: ToastrService  // To show success/error messages
+    private toastr: ToastrService,
+    private registrationService:RegistrationprocessService  // To show success/error messages
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,8 +41,9 @@ export class RegisteruserComponent {
 
       this.apiService.registerUser(userData).subscribe(
         (response) => {
-          this.toastr.success('Please Verify Your Mail!', 'Success');
           localStorage.setItem('registeredEmail', userData.email);
+          this.registrationService.saveStep1Data(userData.email, userData.password);
+          this.toastr.success('Please Verify Your Mail!', 'Success');
           this.router.navigate(['/otp-verification']);
         },
         (error) => {

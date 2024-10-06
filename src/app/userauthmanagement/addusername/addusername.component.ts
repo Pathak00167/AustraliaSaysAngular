@@ -2,6 +2,8 @@ import { ApiService } from './../../api.service';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule,FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegistrationprocessService } from '../../Services/registrationprocess.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addusername',
@@ -13,7 +15,8 @@ import { Router } from '@angular/router';
 export class AddusernameComponent {
   usernameForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private router:Router,private apiService:ApiService) {
+  constructor(private fb: FormBuilder,private router:Router,private apiService:ApiService,private registrationService: RegistrationprocessService,
+    private toastr: ToastrService) {
     // Initialize the form with a username control
     this.usernameForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]]
@@ -22,21 +25,31 @@ export class AddusernameComponent {
 
   // Method to handle username submission
   submitUsername() {
-    if (this.usernameForm.valid) {
+    if (this.usernameForm.valid) {debugger
       const usernameValue = this.usernameForm.get('username')?.value;
-     
+      const userId = this.apiService.getUserIdFromToken();  // Get the user ID from token
+  
+      // formdata
+      const formData = new FormData();
+      formData.append('UserId', userId);
+      formData.append('UserName', usernameValue);
+  
+      this.apiService.UserUniqueName(formData).subscribe(
+        response => {
+          console.log('Username submitted successfully:', response);
+          this.router.navigate(['/enhance-profile']); // Navigate on success
+          this.toastr.success('UserName Added Successfully!', 'Success');
+        },
+        error => {
+          console.error('Error submitting username:', error);
+        }
+      );
+  
       console.log('Username submitted:', usernameValue);
-this.router.navigate(['/enhance-profile'])
-      // Add your API call logic here to save the username
-      // this.yourService.saveUsername(usernameValue).subscribe(response => {
-      //   // Handle successful response
-      // }, error => {
-      //   // Handle error response
-      // });
-      
     } else {
       // Show validation error (optional)
       console.log('Form is invalid');
     }
   }
+  
 }

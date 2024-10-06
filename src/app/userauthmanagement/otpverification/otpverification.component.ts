@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 import { ApiService } from '../../api.service';
 import { ToastrService } from 'ngx-toastr';
-import { RegistrationprocessService } from '../../Services/registrationprocess.service'; // Adjust the path if necessary
+import { RegistrationprocessService } from '../../Services/registrationprocess.service'; 
 
 @Component({
   selector: 'app-otpverification',
@@ -28,27 +28,26 @@ export class OtpverificationComponent {
 
     // Initialize the form with form controls
     this.otpForm = this.fb.group({
-      email: [this.email, [Validators.required, Validators.email]], // Use email from localStorage
+      email: [this.email, [Validators.required, Validators.email]], 
       otp: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
     });
   }
 
   // Method to handle OTP submission
   submitOtp() {
+    debugger
     if (this.otpForm.valid) {
       const otpValue = this.otpForm.value.otp;
       const emailValue = this.otpForm.value.email;
 
       // Call API to verify the OTP
-      this.apiService.VerifyOtp(otpValue).subscribe(
+      this.apiService.VerifyOtp({ email: emailValue, otp: otpValue }).subscribe(
         (response) => {
-          // If the response is successful
-          this.toastr.success('OTP Verified Successfully!', 'Success');
-          // Mark step 2 as complete in the registration service
-          this.registrationService.verifyOtp;
-
-          // Navigate to the next step (Add Username)
+          this.registrationService.verifyOtp(otpValue);
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('role', response.role);
           this.router.navigate(['/add-username']);
+          this.toastr.success('OTP Verified Successfully!', 'Success');
         },
         (error) => {
           // Handle the error response
