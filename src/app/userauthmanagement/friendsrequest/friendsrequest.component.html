@@ -163,12 +163,36 @@
       </div>
 
       <div class="main-content">
-        <div class="justify-content: center;">
-            <h5 >Find Your Friends</h5>
+        <div class="content-header">
+          <h5>Pending Friend Requests</h5>
         </div>
       
-
+        <!-- Pending requests section -->
+        <div class="content-section" *ngIf="pendingRequests && pendingRequests.length > 0">
+          <h6>Pending Requests:</h6>
+          <ul>
+            <li *ngFor="let request of pendingRequests">
+              {{ request.name }}
+              <button (click)="acceptRequest(request.id)">Accept</button>
+              <button (click)="declineRequest(request.id)">Decline</button>
+            </li>
+          </ul>
+        </div>
+      
+        <!-- Send request section -->
+        <div class="content-section">
+          <h6>Send Friend Requests:</h6>
+          <ul>
+            <li *ngFor="let user of usersToSendRequest | slice:0:5">
+              {{ user.name }}
+              <button (click)="sendFriendRequest(user.id)">Send Request</button>
+            </li>
+          </ul>
+      
+          <button (click)="shuffleUsers()">Shuffle Users</button>
+        </div>
       </div>
+      
     </div>
 
     <!-- Core JS Files -->
