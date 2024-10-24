@@ -26,22 +26,32 @@ export class LoginComponent {
   onLogin() {
     debugger
     this.errorMessage = null;  // Reset the error message before a new login attempt
+    
     if (this.loginForm.valid) {
       this.ApiService.login(this.loginForm.value).subscribe(response => {
         if (response.role === 'Admin') {
-          this.toastr.success('login successful')
+          this.toastr.success('Login successful');
           // Save the token and navigate to the admin page
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', response.role);
           this.router.navigate(['dashboard']);
         
+        } else if (response.role === 'User') {  // Corrected the else if syntax
+          this.toastr.success('Login successful');
+          // Save the token and navigate to the user dashboard
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('role', response.role);
+          this.router.navigate(['user-dashboard']);  // Changed to user dashboard
+          
         } else {
           this.errorMessage = 'Access denied. Only admin can log in.';
         }
+        
       }, error => {
-        this.toastr.warning('Login failed')
+        this.toastr.warning('Login failed');
         this.errorMessage = 'Login failed. Please check your credentials and try again.';
       });
     }
   }
+  
 }
