@@ -9,11 +9,23 @@
       <!-- Profile Picture Upload -->
       <div class="text-center mb-4">
         <label for="profilePic" class="d-block mb-2" style="color: #FFD700;">Profile Picture</label>
+
+        <!-- Display image preview -->
+        <div *ngIf="selectedImageUrl; else uploadSection">
+          <img [src]="selectedImageUrl" alt="Profile Preview" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+        </div>
+
+        <ng-template #uploadSection>
+          <div class="placeholder-image" style="width: 150px; height: 150px; border-radius: 50%; background-color: #555; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <i class="bi bi-person" style="font-size: 2rem; color: #FFD700;"></i>
+          </div>
+        </ng-template>
+
         <input type="file" id="profilePic" (change)="onFileSelected($event)" 
                accept="image/*" style="display: none;" />
         <label for="profilePic" 
                style="border: 2px dashed #4CAF50; padding: 10px; border-radius: 8px; display: inline-block; cursor: pointer;">
-          <i class="bi bi-upload" style="font-size: 1.5rem; color: #4CAF50;"></i> Upload Picture
+          <i class="bi bi-upload" style="font-size: 1.5rem; color: #4CAF50;"></i> Change Picture
         </label>
       </div>
 
@@ -34,6 +46,7 @@
                  class="form-control text-white" 
                  style="background-color: #555; border: none; border-radius: 8px;" required>
         </div>
+
         <!-- Submit Button -->
         <div class="button-container" style="display: flex; justify-content: center;">
           <button type="submit" 
@@ -43,7 +56,6 @@
         </button>
         </div>
       </form>
-
     </div>
   </div>
 </div>

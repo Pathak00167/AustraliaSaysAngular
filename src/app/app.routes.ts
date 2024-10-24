@@ -12,7 +12,7 @@ import { AddusernameComponent } from './userauthmanagement/addusername/adduserna
 import { EnhanceprofileComponent } from './userauthmanagement/enhanceprofile/enhanceprofile.component';
 import { userGuard } from './Guards/user.guard';
 import { UserdashboardComponent } from './userauthmanagement/userdashboard/userdashboard.component';
-import { FriendsrequestComponent } from './userauthmanagement/friendsrequest/friendsrequest.component';
+import { FriendRequestComponent } from './userauthmanagement/friendsrequest/friendsrequest.component';
 
 
 export const routes: Routes = [
@@ -27,6 +27,6 @@ export const routes: Routes = [
   { path: 'add-username', component: AddusernameComponent,canActivate:[RegistrationGuard] , data: { stepRequired: 2 }},
   { path: 'enhance-profile', component: EnhanceprofileComponent,canActivate:[RegistrationGuard], data: { stepRequired: 3 } },
   { path: 'user-dashboard', component: UserdashboardComponent,canActivate:[userGuard] },
-  {path: 'friends-request', component:FriendsrequestComponent,canActivate:[userGuard]},
+  {path: 'friends-request', component:FriendRequestComponent,canActivate:[userGuard]},
   { path: '**', redirectTo: 'login' } 
 ];

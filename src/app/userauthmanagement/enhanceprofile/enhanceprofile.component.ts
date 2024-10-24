@@ -16,6 +16,7 @@ import { RegistrationprocessService } from '../../Services/registrationprocess.s
 export class EnhanceprofileComponent {
   profileForm: FormGroup;
   selectedFile: File | null = null;
+  selectedImageUrl: string | ArrayBuffer | null = null;
 
   constructor(
     private fb: FormBuilder, 
@@ -34,8 +35,15 @@ export class EnhanceprofileComponent {
   // Method to handle file selection
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files) {
+    if (input.files && input.files[0]) {
       this.selectedFile = input.files[0];
+
+      // Create image preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImageUrl = e.target.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 
@@ -48,7 +56,7 @@ export class EnhanceprofileComponent {
       formData.append('UserId', userId);
       formData.append('Name', this.profileForm.get('name')?.value);
       formData.append('Dob', this.profileForm.get('dob')?.value);
-      formData.append('ProfilePic', this.selectedFile); // Add file to formData
+      formData.append('UserProfilePicture', this.selectedFile); // Add file to formData
 
       // Call the API to enhance profile
       this.apiService.EnhanceProfile(formData).subscribe(
