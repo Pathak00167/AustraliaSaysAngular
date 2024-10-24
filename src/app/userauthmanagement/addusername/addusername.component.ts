@@ -23,11 +23,11 @@ export class AddusernameComponent {
     });
   }
 
-  // Method to handle username submission
+ 
   submitUsername() {
-    if (this.usernameForm.valid) {debugger
+    if (this.usernameForm.valid) {
       const usernameValue = this.usernameForm.get('username')?.value;
-      const userId = this.apiService.getUserIdFromToken();  // Get the user ID from token
+      const userId = this.apiService.getUserIdFromToken(); 
   
       // formdata
       const formData = new FormData();
@@ -38,7 +38,7 @@ export class AddusernameComponent {
         response => {
           console.log('Username submitted successfully:', response);
           this.registrationService.saveUsername(usernameValue);
-          this.router.navigate(['/enhance-profile']); // Navigate on success
+          this.router.navigate(['/enhance-profile']); 
           this.toastr.success('UserName Added Successfully!', 'Success');
         },
         error => {
@@ -48,7 +48,6 @@ export class AddusernameComponent {
   
       console.log('Username submitted:', usernameValue);
     } else {
-      // Show validation error (optional)
       console.log('Form is invalid');
     }
   }

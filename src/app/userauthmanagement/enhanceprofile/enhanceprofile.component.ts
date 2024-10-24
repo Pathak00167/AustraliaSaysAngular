@@ -36,7 +36,6 @@ export class EnhanceprofileComponent {
     const input = event.target as HTMLInputElement;
     if (input.files) {
       this.selectedFile = input.files[0];
-      // You can add logic to preview the image if needed
     }
   }
 
@@ -59,11 +58,12 @@ export class EnhanceprofileComponent {
           // Handle success actions (e.g., navigation, success message)
         },
         error => {
+          this.toastr.error('Something went wrong Please try again')
           console.error('Error enhancing profile:', error);
         }
       );
     } else {
-      // Show validation error if form is invalid or file not selected
+      this.toastr.error('Form is invalid or file not selected')
       console.log('Form is invalid or file not selected');
     }
   }
