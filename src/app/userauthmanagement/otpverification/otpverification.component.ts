@@ -14,7 +14,7 @@ import { RegistrationprocessService } from '../../Services/registrationprocess.s
 })
 export class OtpverificationComponent {
   otpForm: FormGroup;
-  email: string | null = ''; // Store email here
+  email: string | null = ''; 
 
   constructor(
     private fb: FormBuilder, 

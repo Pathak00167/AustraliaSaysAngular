@@ -84,7 +84,7 @@ export class ApiService {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       console.log('Decoded Token:', decodedToken);
-      return decodedToken.sub;  // Adjust based on your token structure
+      return decodedToken.sub;  
     }
     return "";
 }
