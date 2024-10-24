@@ -27,7 +27,6 @@ export class ApiService {
   }
 
   deleteCategory(id: number): Observable<any> {
-    debugger
     return this.http.delete(`${this.apiUrl}/Admin/Delete-Category/${id}`);
   }
 
@@ -51,7 +50,6 @@ export class ApiService {
   }
 
   addArticle(article: any): Observable<any> {
-    debugger
     return this.http.post(`${this.apiUrl}/Admin/AddArticle`, article);
   }
 
@@ -63,14 +61,14 @@ export class ApiService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
-  registerUser(user: { email: string, password: string }): Observable<any> {debugger
+  registerUser(user: { email: string, password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Auth/Register-User`, user);
   }
 
-  VerifyOtp(user: { email: string, otp: string }): Observable<any> {debugger
+  VerifyOtp(user: { email: string, otp: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Auth/Verify-Otp`, user);
   }
-  UserUniqueName(user: FormData): Observable<any> {debugger
+  UserUniqueName(user: FormData): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/User/Update-UserProfile`, user);
   }
 
@@ -79,7 +77,7 @@ export class ApiService {
   }
 
 
-  getUserIdFromToken(): string  {debugger
+  getUserIdFromToken(): string  {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken: any = jwtDecode(token);
