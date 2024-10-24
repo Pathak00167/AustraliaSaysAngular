@@ -16,32 +16,32 @@
           <i class="bi bi-upload" style="font-size: 1.5rem; color: #4CAF50;"></i> Upload Picture
         </label>
       </div>
-      
 
-      <!-- Name Input -->
-      <div class="form-group mb-3">
-        <label for="name" style="color: #FFD700;">Name</label>
-        <input formControlName="name" type="text" id="name" 
-               class="form-control text-white" placeholder="Enter your name"
-               style="background-color: #555; border: none; border-radius: 8px;" required>
-      </div>
+      <!-- Form for Profile Data -->
+      <form [formGroup]="profileForm" (ngSubmit)="createProfile()">
+        <!-- Name Input -->
+        <div class="form-group mb-3">
+          <label for="name" style="color: #FFD700;">Name</label>
+          <input formControlName="name" type="text" id="name" 
+                 class="form-control text-white" placeholder="Enter your name"
+                 style="background-color: #555; border: none; border-radius: 8px;" required>
+        </div>
 
-      <!-- Date of Birth Input -->
-      <div class="form-group mb-3">
-        <label for="dob" style="color: #FFD700;">Date of Birth</label>
-        <input formControlName="dob" type="date" id="dob" 
-               class="form-control text-white" 
-               style="background-color: #555; border: none; border-radius: 8px;" required>
-      </div>
+        <!-- Date of Birth Input -->
+        <div class="form-group mb-3">
+          <label for="dob" style="color: #FFD700;">Date of Birth</label>
+          <input formControlName="dob" type="date" id="dob" 
+                 class="form-control text-white" 
+                 style="background-color: #555; border: none; border-radius: 8px;" required>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" 
+                class="btn btn-block mt-4" 
+                style="background-color: #FF5722; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">
+          Create Profile
+        </button>
+      </form>
 
-      <!-- Submit Button -->
-     <div class="justify-content-center">
-      <button type="submit" 
-      class="btn btn-block mt-4" 
-      style="background-color: #FF5722; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold;">
-Create Profile
-</button>
-     </div>
     </div>
   </div>
 </div>

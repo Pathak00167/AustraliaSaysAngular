@@ -37,6 +37,7 @@ export class AddusernameComponent {
       this.apiService.UserUniqueName(formData).subscribe(
         response => {
           console.log('Username submitted successfully:', response);
+          this.registrationService.saveUsername(usernameValue);
           this.router.navigate(['/enhance-profile']); // Navigate on success
           this.toastr.success('UserName Added Successfully!', 'Success');
         },

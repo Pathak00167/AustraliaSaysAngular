@@ -38,7 +38,7 @@ export class RegistrationprocessService {
   saveUsername(username: string) {
     debugger
     
-    this.incrementStep(); // Move to the next step
+    this.incrementStep(); 
   }
 
   // Save profile details (step 4)

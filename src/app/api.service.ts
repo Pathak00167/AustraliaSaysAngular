@@ -74,6 +74,11 @@ export class ApiService {
     return this.http.patch<any>(`${this.apiUrl}/User/Update-UserProfile`, user);
   }
 
+  EnhanceProfile(profileData: FormData): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/User/Update-UserProfile`, profileData);
+  }
+
+
   getUserIdFromToken(): string  {debugger
     const token = localStorage.getItem('token');
     if (token) {
