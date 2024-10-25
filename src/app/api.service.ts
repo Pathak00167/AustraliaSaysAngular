@@ -10,17 +10,13 @@ export class ApiService {
 
   private apiUrl = 'https://localhost:7237/api'; 
   constructor(private http: HttpClient) {}
-  login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/Auth/login`, credentials);
-  }
 
+  //#region   Admin Apis
   getUsersList(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Admin/Users-List`);
   }
 
-  forgotPassword(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/forgot-password`, data);
-  }
+  
 
   getCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/Admin/Categories-List`);
@@ -60,7 +56,30 @@ export class ApiService {
   deleteArticle(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  //#endregion
+  
+//#region   Authenication Apis
+login(credentials: { email: string, password: string }): Observable<any> {
+  return this.http.post<any>(`${this.apiUrl}/Auth/login`, credentials);
+}
 
+forgotPassword(data: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/forgot-password`, data);
+}
+
+getUserIdFromToken(): string  {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const decodedToken: any = jwtDecode(token);
+    console.log('Decoded Token:', decodedToken);
+    return decodedToken.sub;  
+  }
+  return "";
+}
+
+//#endregion
+
+  //#region RegistrationStepProcessApis
   registerUser(user: { email: string, password: string }): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/Auth/Register-User`, user);
   }
@@ -75,16 +94,10 @@ export class ApiService {
   EnhanceProfile(profileData: FormData): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/User/Update-UserProfile`, profileData);
   }
+  //#endregion
 
+  //#region  FriendRequest Page
 
-  getUserIdFromToken(): string  {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken: any = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken);
-      return decodedToken.sub;  
-    }
-    return "";
-}
-
+//#endregion
+ 
 }
