@@ -6,8 +6,7 @@ import { finalize } from 'rxjs/operators';
 export const customInterceptor: HttpInterceptorFn = (req, next) => {debugger
 
   const loaderService = inject(LoaderService);
-
-  // Start showing the loader
+  
   loaderService.show();
 
  

@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { UsernavComponent } from "../usernav/usernav.component";
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-friendsrequest',
@@ -13,7 +15,9 @@ export class FriendRequestComponent implements OnInit {
   pendingRequests: any[] = [];
   usersToSendRequest: any[] = [];
 
-  constructor() { }
+  constructor(private apiService:ApiService,private toastrService:ToastrService) { }
+
+
 
   ngOnInit(): void {
     // Fetch pending requests
@@ -30,6 +34,9 @@ export class FriendRequestComponent implements OnInit {
       { id: 6, name: 'Sarah Wilson' },
       { id: 7, name: 'James Taylor' }
     ];
+  }
+
+  UserListt(){
   }
 
   acceptRequest(requestId: number) {
