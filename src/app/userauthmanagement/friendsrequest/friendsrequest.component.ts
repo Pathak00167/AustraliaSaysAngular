@@ -14,48 +14,77 @@ import { ToastrService } from 'ngx-toastr';
 export class FriendRequestComponent implements OnInit {
   pendingRequests: any[] = [];
   usersToSendRequest: any[] = [];
+  userId: string = "";
+  baseurl:string="https://localhost:7237/"
+  senderId:string="";
+  recieverId:string="";
+  sentRequests: { [userId: string]: boolean } = {};
 
-  constructor(private apiService:ApiService,private toastrService:ToastrService) { }
 
-
+  constructor(private apiService: ApiService, private toastrService: ToastrService) {}
 
   ngOnInit(): void {
-    // Fetch pending requests
+    this.userId = this.apiService.getUserIdFromToken();
+
+    if (this.userId) {debugger
+      this.apiService.getRandomUsers(this.userId).subscribe({
+        next: (data) => {
+          this.usersToSendRequest = data;
+          console.log(data)
+        },
+        error: (error) => {
+          console.error('Error fetching random users:', error);
+          this.toastrService.error('Failed to load random users');
+        }
+      });
+    } else {
+      this.toastrService.error('User not authenticated or invalid token');
+    }
+
+    // Fetch pending friend requests (static data for now)
     this.pendingRequests = [
       { id: 1, name: 'John Doe' },
       { id: 2, name: 'Jane Smith' }
     ];
-
-    // Fetch users to send friend requests
-    this.usersToSendRequest = [
-      { id: 3, name: 'Michael Johnson' },
-      { id: 4, name: 'Emily Davis' },
-      { id: 5, name: 'David Brown' },
-      { id: 6, name: 'Sarah Wilson' },
-      { id: 7, name: 'James Taylor' }
-    ];
   }
 
-  UserListt(){
-  }
-
+  // Accept request logic
   acceptRequest(requestId: number) {
     console.log(`Accepted request: ${requestId}`);
-    // Logic to accept the request
     this.pendingRequests = this.pendingRequests.filter(req => req.id !== requestId);
   }
 
+  // Decline request logic
   declineRequest(requestId: number) {
     console.log(`Declined request: ${requestId}`);
-    // Logic to decline the request
     this.pendingRequests = this.pendingRequests.filter(req => req.id !== requestId);
   }
 
-  sendFriendRequest(userId: number) {
+  // Send friend request logic
+  sendFriendRequest(userId: string) {debugger
+    this.senderId = this.apiService.getUserIdFromToken();
+    console.log(`Sender Id:${this.senderId}`)
     console.log(`Sent friend request to user: ${userId}`);
-    // Logic to send a friend request
+    const friendRequestData = {
+      senderId: this.senderId,
+      receiverId: userId
+    };
+    this.apiService.sendFriendRequest(friendRequestData).subscribe(
+      (response) => {
+        console.log(`Friend request sent successfully to user: ${userId}`);
+        this.sentRequests[userId] = true;
+      },
+      (error) => {
+        console.error('Failed to send friend request', error);
+      }
+    );  
   }
 
+  cancelFriendRequest(userId:string){
+
+  }
+
+  // Shuffle users logic
   shuffleUsers() {
     this.usersToSendRequest = this.shuffleArray(this.usersToSendRequest);
   }

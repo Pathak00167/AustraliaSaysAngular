@@ -169,7 +169,7 @@
         }
 
         button:hover {
-            background-color: #42b72a; /* Change background color on hover */
+            background-color: #42b72a;
             color: white;
         }
 
@@ -180,8 +180,16 @@
         }
 
         .btn-shuffle:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3; 
         }
+        
+        .user-image {
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover;
+    border: 2px solid #e0e0e0; /* Optional: Adds a subtle border */
+}
+
     </style>
 </head>
 
@@ -196,10 +204,6 @@
         </div>
 
         <div class="main-content">
-            <div class="content-header">
-                <h5>Pending Friend Requests</h5>
-            </div>
-          
             <!-- Pending requests section -->
             <div class="content-section" *ngIf="pendingRequests && pendingRequests.length > 0">
                 <h6>Pending Requests:</h6>
@@ -215,17 +219,39 @@
             </div>
           
             <!-- Send request section -->
-            <div class="content-section">
-                <h6>Send Friend Requests:</h6>
-                <ul>
-                    <li *ngFor="let user of usersToSendRequest | slice:0:5">
-                        {{ user.name }}
-                        <button (click)="sendFriendRequest(user.id)">Send Request</button>
+            <div class="content-section p-4 bg-white rounded shadow-lg">
+                <h6 class="mb-4 fw-bold text-primary text-center">Send Friend Requests</h6>
+                <ul class="list-unstyled">
+                    <li *ngFor="let user of usersToSendRequest | slice:0:5" class="mb-3">
+                        <div class="user-item d-flex align-items-center justify-content-between p-3 border rounded-lg shadow-sm bg-light">
+                            <!-- User Image -->
+                            <div class="d-flex align-items-center">
+                                <img [src]="baseurl + user.profilePicture" alt="{{ user.firstName }}" class="user-image rounded-circle img-fluid me-3" width="50" height="50">
+                                
+                                <!-- User Name -->
+                                <div class="user-details">
+                                    <span class="fw-bold text-dark">{{ user.firstName }} {{ user.lastName }}</span>
+                                    <p class="small text-muted mb-0">{{ user.email }}</p> <!-- You can add additional details like email -->
+                                </div>
+                            </div>
+            
+                            <button 
+                            class="btn btn-sm" 
+                            [ngClass]="sentRequests[user.id] ? 'btn-outline-danger' : 'btn-outline-success'"
+                            (click)="sentRequests[user.id] ? cancelFriendRequest(user.id) : sendFriendRequest(user.id)">
+                            {{ sentRequests[user.id] ? 'Cancel Request' : 'Send Request' }}
+                          </button>
+                        </div>
                     </li>
                 </ul>
-          
-                <button class="btn-shuffle" (click)="shuffleUsers()">Shuffle Users</button>
+            
+                <!-- Shuffle Users Button -->
+                <button class="btn btn-primary mt-4 w-100 py-2" (click)="shuffleUsers()">Discover More Friends</button>
             </div>
+            
+            
+            
+            
         </div>
     </div>
 
