@@ -11,7 +11,7 @@
         <label for="profilePic" class="d-block mb-2" style="color: #FFD700;">Profile Picture</label>
 
         <!-- Display image preview -->
-        <div *ngIf="selectedImageUrl; else uploadSection">
+        <div class="justify-content: center;" *ngIf="selectedImageUrl; else uploadSection">
           <img [src]="selectedImageUrl" alt="Profile Preview" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
         </div>
 
