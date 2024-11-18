@@ -3,7 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';  
 import { UserslistComponent } from './pages/userslist/userslist.component';
 import { adminGuard } from './admin.guard'; 
-import { RegistrationGuard } from './Gaurds/registration.guard';
+import { RegistrationGuard } from './Guards/registration.guard';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { RegisteruserComponent } from './userauthmanagement/registeruser/registeruser.component';

@@ -98,11 +98,11 @@ getUserIdFromToken(): string  {
 
   //#region  FriendRequest Page
   getRandomUsers(userId: string): Observable<any[]> {debugger
-    return this.http.get<any[]>(`${this.apiUrl}/FriendRequest/random-users/${userId}`);
+    return this.http.get<any[]>(`${this.apiUrl}/User/random-users/${userId}`);
   }
 
   sendFriendRequest(data: { senderId: string; receiverId: string }) {
-    return this.http.post(`${this.apiUrl}/FriendRequest/send`, data);
+    return this.http.post(`${this.apiUrl}/User/send`, data);
   }
   
 
