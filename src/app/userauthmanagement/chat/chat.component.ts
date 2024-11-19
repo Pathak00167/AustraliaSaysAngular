@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,UsernavComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
