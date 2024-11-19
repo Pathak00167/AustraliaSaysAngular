@@ -1,0 +1,36 @@
+<div class="container">
+    <header class="header">
+      <button class="menu-icon">
+        <!-- Add menu icon -->
+      </button>
+      <h1>Message</h1>
+      <button class="search-icon">
+        <!-- Add search icon -->
+      </button>
+    </header>
+  
+    <section class="user-list">
+      <div class="user-item" *ngFor="let user of users">
+        <div class="user-avatar">
+          <img [src]="user.imageUrl" alt="{{ user.name }}">
+          <span class="status" [ngClass]="{'online': user.online, 'offline': !user.online}"></span>
+        </div>
+        <div class="user-info">
+          <h3>{{ user.name }}, {{ user.age }} <span class="dot" [ngClass]="{'online-dot': user.online, 'offline-dot': !user.online}"></span></h3>
+          <p>{{ user.lastMessage }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <button class="floating-button">
+      <!-- Add '+' icon for new message creation -->
+    </button>
+  
+    <!-- Add footer icons (home, heart, profile, etc.) -->
+    <footer class="footer">
+      <i class="icon-home"></i>
+      <i class="icon-heart"></i>
+      <i class="icon-profile"></i>
+    </footer>
+  </div>
+  

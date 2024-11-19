@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { UsernavComponent } from "../usernav/usernav.component";
 import { UsersidebarComponent } from "../usersidebar/usersidebar.component";
 import { SidenavComponent } from "../../pages/sidenav/sidenav.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-userdashboard',
   standalone: true,
-  imports: [UsernavComponent, UsersidebarComponent, SidenavComponent],
+  imports: [UsernavComponent,RouterModule],
   templateUrl: './userdashboard.component.html',
   styleUrl: './userdashboard.component.css'
 })
