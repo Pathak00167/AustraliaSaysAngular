@@ -30,7 +30,7 @@ export class ChatHubService {
     }
   }
 
-  private registerReceiveNotification(): void {
+  public registerReceiveNotification(): void {
     this.hubConnection.on('ReceiveNotification', (message: string) => {
       console.log('Notification received: ', message);
       alert('New notification: ' + message); 

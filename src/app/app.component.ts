@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Observable } from 'rxjs';
 import { UserdashboardComponent } from "./userauthmanagement/userdashboard/userdashboard.component";
+import { ChatHubService } from './Services/chat-hub.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatProgressSpinnerModule, UserdashboardComponent],
+  imports: [CommonModule, RouterOutlet, MatProgressSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -19,7 +21,13 @@ export class AppComponent {
   title = 'angularaustraliasays';
   isLoading$: Observable<boolean>;
 
-  constructor(private loaderService: LoaderService) {
+  constructor(private loaderService: LoaderService,private chathub:ChatHubService,private toastrService:ToastrService) {
     this.isLoading$ = this.loaderService.isLoading$;
+    this.chathub.startConnection();
+    this.chathub.hubConnection.on('ReceiveNotification', (message: string) => {
+      // Logic to handle incoming friend requests or notifications
+      console.log('New notification:', message);
+      this.toastrService.info(message);
+    });
   }
 }

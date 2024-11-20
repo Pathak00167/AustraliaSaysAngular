@@ -1,149 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    /* Basic CSS for layout */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Facebook Style Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+    <style>
+        /* General styles */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Public Sans", sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+        }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background-color: #f5f5f5;
-      border-bottom: 1px solid #ccc;
-    }
+        .wrapper {
+            flex: 1;
+            display: flex;
+        }
 
-    nav .nav-item {
-      font-size: 16px;
-      color: #333;
-      text-decoration: none;
-      margin-right: 20px;
-      cursor: pointer;
-    }
+        .top-nav {
+            width: 100%;
+            background-color: #4267B2;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
 
-    nav .nav-right {
-      display: flex;
-      align-items: center;
-    }
+        .top-nav .logo img {
+            height: 40px;
+        }
 
-    nav .nav-item:last-child {
-      margin-right: 0;
-    }
+        .top-nav .search-bar input {
+            width: 300px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    nav .profile-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
+        .top-nav .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
 
-    /* User list and avatars */
-    .user-list {
-      margin-top: 20px;
-    }
+        .top-nav .nav-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
 
-    .user-item {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
+        .top-nav .nav-icons i:hover {
+            color: #ffcc00;
+        }
 
-    .user-avatar {
-      position: relative;
-      margin-right: 15px;
-    }
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            overflow-y: auto; 
+        }
 
-    .user-avatar img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
 
-    .status {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: gray;
-    }
+        .sidebar a:hover {
+            background-color: #e4e6eb;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .online {
-      background-color: green;
-    }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .offline {
-      background-color: red;
-    }
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-    .user-info h3 {
-      margin: 0;
-      font-size: 18px;
-    }
+        .content-header h5 {
+            font-weight: bold;
+            color: #333;
+        }
 
-    .user-info p {
-      margin: 5px 0 0;
-      font-size: 14px;
-      color: #666;
-    }
+        .content-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 
-    .dot {
-      margin-left: 5px;
-    }
+        .content-section h6 {
+            margin: 10px 0;
+            color: #555;
+        }
 
-    .online-dot {
-      color: green;
-    }
+        .content-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .offline-dot {
-      color: red;
-    }
-  </style>
+        .content-section li {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .content-section li:hover {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #42b72a;
+            color: white;
+        }
+
+        .btn-shuffle {
+            background-color: #1877f2;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-shuffle:hover {
+            background-color: #0056b3; 
+        }
+        
+        .user-image {
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover;
+    border: 2px solid #e0e0e0; 
+}
+
+    </style>
 </head>
-<body>
-  <div class="container">
-    <!-- Navigation Bar -->
-    <nav>
-      <div class="nav-left">
-        <span class="nav-item">Message</span>
-        <span class="nav-item">Home</span>
-        <span class="nav-item">Notifications</span>
-      </div>
-      <div class="nav-right">
-        <span class="profile-icon">&#8942;</span> <!-- 3-dot icon for profile -->
-      </div>
-    </nav>
 
-    <!-- User List Section -->
-    <section class="user-list">
-      <div class="user-item" *ngFor="let user of users">
-        <div class="user-avatar">
-          <img [src]="user.imageUrl" alt="{{ user.name }}">
-          <span class="status" [ngClass]="{'online': user.online, 'offline': !user.online}"></span>
+<body>
+    <app-usernav></app-usernav>
+    <div class="wrapper">
+        <div class="sidebar">
+            <a href="user-dashboard"><i class="fas fa-home"></i> News Feed</a>
+            <a href="friends-request"><i class="fas fa-user-friends"></i> Friends</a>
+            <a href="#"><i class="fas fa-comment-dots"></i> Messages</a>
+            <a href="#"><i class="fas fa-bell"></i> Notifications</a>
         </div>
-        <div class="user-info">
-          <h3>{{ user.name }}, {{ user.age }}
-            <span class="dot" [ngClass]="{'online-dot': user.online, 'offline-dot': !user.online}"></span>
-          </h3>
-          <p>{{ user.lastMessage }}</p>
+
+        <div class="main-content">
+            
+          <section class="user-list">
+            <div class="user-item" *ngFor="let user of users">
+              <div class="user-avatar">
+                <img [src]="user.imageUrl" alt="{{ user.name }}">
+                <span class="status" [ngClass]="{'online': user.online, 'offline': !user.online}"></span>
+              </div>
+              <div class="user-info">
+                <h3>{{ user.name }}, {{ user.age }}
+                  <span class="dot" [ngClass]="{'online-dot': user.online, 'offline-dot': !user.online}"></span>
+                </h3>
+                <p>{{ user.lastMessage }}</p>
+              </div>
+              
+            </div>
+          </section>
+            
+            
+            
         </div>
-      </div>
-    </section>
-  </div>
+    </div>
+
+    <!-- Core JS Files -->
+    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+   
 </body>
 </html>
