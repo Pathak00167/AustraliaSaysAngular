@@ -1,6 +1,106 @@
-<div class="sidebar" id="sidebar">
+<!-- <div class="sidebar" id="sidebar">
   <a href="user-dashboard"><i class="fas fa-home"></i> News Feed</a>
   <a href="friends-request"><i class="fas fa-user-friends"></i> Friends</a>
   <a href="#"><i class="fas fa-comment-dots"></i> Messages</a>
   <a href="#"><i class="fas fa-bell"></i> Notifications</a>
-</div>
+</div> -->
+
+<div class="sidebar" data-background-color="dark">
+    <div class="sidebar-logo">
+      <!-- Logo Header -->
+      <div class="logo-header" data-background-color="dark">
+        <a href="index.html" class="logo">
+          <img
+            src="assets/img/kaiadmin/logo_light.svg"
+            alt="navbar brand"
+            class="navbar-brand"
+            height="20"
+          />
+        </a>
+        <div class="nav-toggle">
+          <button class="btn btn-toggle toggle-sidebar">
+            <i class="gg-menu-right"></i>
+          </button>
+          <button class="btn btn-toggle sidenav-toggler">
+            <i class="gg-menu-left"></i>
+          </button>
+        </div>
+        <button class="topbar-toggler more">
+          <i class="gg-more-vertical-alt"></i>
+        </button>
+      </div>
+      <!-- End Logo Header -->
+    </div>
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+      <div class="sidebar-content">
+        <ul class="nav nav-secondary">
+          <li class="nav-item active">
+            <a
+              data-bs-toggle="collapse"
+              href="#dashboard"
+              class="collapsed"
+              aria-expanded="false"
+            >
+              <i class="fas fa-home"></i>
+              <p>Dashboard</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="dashboard">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="dashboard">
+                    <span class="sub-item">Dashboard</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="userslist">
+                    <span class="sub-item">UsersList</span>
+                  </a>
+                </li>
+                <li>
+                    <a href="categorieslist">
+                      <span class="sub-item">CategoryList</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="articles">
+                      <span class="sub-item">Articles</span>
+                    </a>
+                  </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-section">
+            <span class="sidebar-mini-icon">
+              <i class="fa fa-ellipsis-h"></i>
+            </span>
+          
+          </li>
+       
+        
+            <a data-bs-toggle="collapse" href="#sidebarLayouts">
+              <i class="fas fa-th-list"></i>
+              <p>Sidebar Layouts</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="sidebarLayouts">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="sidebar-style-2.html">
+                    <span class="sub-item">Sidebar Style 2</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="icon-menu.html">
+                    <span class="sub-item">Icon Menu</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+        
+         
+     
+        </ul>
+      </div>
+    </div>
+  </div>

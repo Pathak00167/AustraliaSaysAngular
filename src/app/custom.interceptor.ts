@@ -17,6 +17,6 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {debugger
     }
   })
  return next(cloneRequest).pipe(
-    finalize(() => loaderService.hide()) // Hide the loader once the request is done
+    finalize(() => loaderService.hide()) 
   );
 };
