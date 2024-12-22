@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from './../../api.service'; 
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ChatHubService } from '../../Services/chat-hub.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private ApiService: ApiService, private router: Router,private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private ApiService: ApiService, private router: Router,private toastr: ToastrService,private chathub:ChatHubService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -38,9 +39,11 @@ export class LoginComponent {
         
         } else if (response.role === 'User') {  // Corrected the else if syntax
           this.toastr.success('Login successful');
+          
           // Save the token and navigate to the user dashboard
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', response.role);
+          this.chathub.startConnection();
           this.router.navigate(['user-dashboard']);  // Changed to user dashboard
           
         } else {
