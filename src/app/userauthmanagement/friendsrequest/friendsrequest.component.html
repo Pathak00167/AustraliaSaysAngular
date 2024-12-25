@@ -9,13 +9,27 @@
       <div class="main-content">
         <!-- Pending requests section -->
         <div class="content-section" *ngIf="pendingRequests && pendingRequests.length > 0">
-            <h6>Pending Requests:</h6>
-            <ul>
+            <h6 class="mb-4 fw-bold text-dark text-center">Friend Requests:</h6>
+            <ul class="list-unstyled">
                 <li *ngFor="let request of pendingRequests">
-                    {{ request.name }}
-                    <div>
-                        <button (click)="acceptRequest(request.id)">Accept</button>
-                        <button (click)="declineRequest(request.id)">Decline</button>
+                   
+
+                    <div class="user-item d-flex align-items-center justify-content-between p-3 border rounded-lg shadow-sm bg-light">
+                        <!-- User Image -->
+                        <div class="d-flex align-items-center">
+                            <img [src]="baseurl + request.profilePicture" alt="{{ request.firstName }}" class="user-image rounded-circle img-fluid me-3" width="50" height="50">
+                            
+                            <!-- User Name -->
+                            <div class="user-details">
+                                <span class="fw-bold text-dark">{{ request.firstName }} {{ request.lastName }}</span>
+                            
+                            </div>
+                           
+                                <button (click)="acceptRequest(request.id)" class="btn-outline-success btn btn-sm">Accept</button>
+                                <button (click)="declineRequest(request.id)" class="btn-outline-danger btn btn-sm">Decline</button>
+                                
+                           
+                        </div>
                     </div>
                 </li>
             </ul>

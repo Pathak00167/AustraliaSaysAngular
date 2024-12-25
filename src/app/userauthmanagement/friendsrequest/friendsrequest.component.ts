@@ -18,7 +18,7 @@ export class FriendRequestComponent implements OnInit {
   pendingRequests: any[] = [];
   usersToSendRequest: any[] = [];
   userId: string = "";
-  baseurl:string="http://192.168.26.217:5112/"  // 192.168.26.217
+  baseurl:string="http://192.168.250.217:5112/"  // 192.168.26.217
   senderId:string="";
   recieverId:string="";
   sentRequests: { [userId: string]: boolean } = {};
@@ -55,21 +55,51 @@ export class FriendRequestComponent implements OnInit {
 
     // Fetch pending friend requests (static data for now)
     this.pendingRequests = [
-      { id: 1, name: 'John Doe' },
-      { id: 2, name: 'Jane Smith' }
+     this.apiService.getPendingRequests(this.userId).subscribe({
+      next: (data) => {
+        this.pendingRequests = data;
+        console.log("Pending Requests"+data)
+      },
+      error: (error) => {
+        console.error('Error fetching random users:', error);
+        this.toastrService.error('Failed to load random users');
+      }
+     })
     ];
   }
 
   // Accept request logic
-  acceptRequest(requestId: number) {
-    console.log(`Accepted request: ${requestId}`);
-    this.pendingRequests = this.pendingRequests.filter(req => req.id !== requestId);
+  acceptRequest(senderId: string) {debugger
+    console.log(`Accepted request: ${senderId}`);
+    const acceptRequest = { senderId: senderId, receiverId: this.userId };
+    this.apiService.acceptFriendRequest(acceptRequest).subscribe(
+      (response) => {
+        this.hubService.sendMessage(senderId, `Your Friend Request is Accepted By the${this.userId}`)
+          .then(() => this.toastrService.success('Friend request sent and notification delivered'))
+          .catch((err:any) => this.toastrService.error('Failed to deliver friend request notification'));
+      },
+      (error) => 
+
+        this.toastrService.error('Connection Issue Please try again later')
+    );
+    this.pendingRequests = this.pendingRequests.filter(req => req.id !== senderId);
   }
 
   // Decline request logic
-  declineRequest(requestId: number) {
-    console.log(`Declined request: ${requestId}`);
-    this.pendingRequests = this.pendingRequests.filter(req => req.id !== requestId);
+  declineRequest(senderId: string) {
+    console.log(`Declined request: ${senderId}`);
+    this.pendingRequests = this.pendingRequests.filter(req => req.id !== senderId);
+    const declinefriendRequest = { senderId: senderId, receiverId: this.userId };
+    this.apiService.declineFriendRequest(declinefriendRequest).subscribe(
+      (response) => {
+        this.hubService.sendMessage(senderId, `Your Friend Request is Rejected By the${this.userId}`)
+          .then(() => this.toastrService.success('Friend request Declined successfully'))
+          .catch((err:any) => this.toastrService.error('Failed to deliver friend request notification'));
+      },
+      (error) => 
+
+        this.toastrService.error('Connection Issue Please try again later')
+    );
   }
 
   // Send friend request logic
@@ -90,8 +120,9 @@ export class FriendRequestComponent implements OnInit {
   
   
 
-  cancelFriendRequest(userId:string){
-
+  cancelFriendRequest(senderId:string){
+    const friendRequestData = { senderId: senderId, receiverId: this.userId };
+    
   }
 
   // Shuffle users logic

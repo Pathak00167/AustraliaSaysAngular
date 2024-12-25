@@ -37,7 +37,7 @@
           <li class="nav-item active">
             <a
               data-bs-toggle="collapse"
-              href="#dashboard"
+              [routerLink]="['dashboard']"
               class="collapsed"
               aria-expanded="false"
             >
@@ -48,22 +48,22 @@
             <div class="collapse" id="dashboard">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="dashboard">
+                  <a [routerLink]="['dashboard']">
                     <span class="sub-item">Dashboard</span>
                   </a>
                 </li>
                 <li>
-                  <a href="userslist">
+                  <a [routerLink]="['userslist']">
                     <span class="sub-item">UsersList</span>
                   </a>
                 </li>
                 <li>
-                    <a href="categorieslist">
+                    <a [routerLink]="['categorieslist']">
                       <span class="sub-item">CategoryList</span>
                     </a>
                   </li>
                   <li>
-                    <a href="articles">
+                    <a [routerLink]="['articles']">
                       <span class="sub-item">Articles</span>
                     </a>
                   </li>

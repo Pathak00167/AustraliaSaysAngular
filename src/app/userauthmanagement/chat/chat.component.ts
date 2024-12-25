@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { UsernavComponent } from '../usernav/usernav.component';
 import { CommonModule } from '@angular/common';
+import { SidenavComponent } from '../../pages/sidenav/sidenav.component';
 
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule,UsernavComponent],
+  imports: [CommonModule,UsernavComponent,SidenavComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })

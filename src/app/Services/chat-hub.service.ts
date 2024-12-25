@@ -7,19 +7,19 @@ import * as signalR from '@microsoft/signalr';
   providedIn: 'root' 
 })
 export class ChatHubService {
-  private apiUrl = 'http://192.168.26.217:5112';  // 192.168.26.217
+  private apiUrl = 'http://192.168.208.217:5112';  //  192.168.208.217
   
   public hubConnection!: HubConnection; 
   constructor() {}
 
   public startConnection(): void {
     debugger;
-    const token = localStorage.getItem("token"); // Fetch the JWT token from localStorage
+    const token = localStorage.getItem("token"); 
   
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${this.apiUrl}/hub`, {
-        accessTokenFactory: () => token ? token : '', // Pass the JWT token to the SignalR hub
-        withCredentials: false // You can remove `withCredentials` if using JWT
+        accessTokenFactory: () => token ? token : '',
+        withCredentials: false 
       })
       .build();
 

@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class ApiService {
 
-  private apiUrl = 'http://192.168.26.217:5112/api';   // 192.168.26.217
+  private apiUrl = 'http://192.168.208.217:5112/api';   //   192.168.208.217
   constructor(private http: HttpClient) {}
 
   //#region   Admin Apis
@@ -104,8 +104,18 @@ getUserIdFromToken(): string  {
   sendFriendRequest(data: { senderId: string; receiverId: string }) {
     return this.http.post(`${this.apiUrl}/User/send`, data);
   }
-  
+  //http://192.168.250.217:5112/api/User/Pending-Request/2
+getPendingRequests(userId:string):Observable<any[]>{
+  return this.http.get<any[]>(`${this.apiUrl}/User/Pending-Request/${userId}`);
+}
 
+acceptFriendRequest(data: { senderId: string; receiverId: string }):Observable<any>{
+  return this.http.post(`${this.apiUrl}/User/accept-Request`,data)
+}
+
+declineFriendRequest(data:{senderId:string;receiverId:string}):Observable<any>{
+  return this.http.post(`${this.apiUrl}/User/reject-Request`,data)
+}
 //#endregion
 
  
