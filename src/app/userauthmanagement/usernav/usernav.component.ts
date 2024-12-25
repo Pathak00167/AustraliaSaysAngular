@@ -18,9 +18,10 @@ export class UsernavComponent {
     private apiService: ApiService,
   private notificationService:NotificationService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {debugger
     this.notificationService.notifications$.subscribe((notifications) => {
       this.notifications = notifications;
+      console.log(notifications)
     });
   }
   

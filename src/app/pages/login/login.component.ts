@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './../../api.service'; 
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ChatHubService } from '../../Services/chat-hub.service';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
