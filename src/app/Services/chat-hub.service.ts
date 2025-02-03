@@ -7,7 +7,7 @@ import * as signalR from '@microsoft/signalr';
   providedIn: 'root' 
 })
 export class ChatHubService {
-  private apiUrl = 'http://192.168.208.217:5112';  //  192.168.208.217
+  private apiUrl = 'http://192.168.164.217:5112';  //  192.168.208.217
   
   public hubConnection!: HubConnection; 
   constructor() {}

@@ -1,0 +1,29 @@
+<!-- chatroom.component.html -->
+<div class="wrapper">
+    <!-- Sidebar -->
+    <app-sidenav></app-sidenav>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <app-usernav></app-usernav>
+
+        <!-- Chat Room -->
+        <div class="chat-room-container">
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="message" *ngFor="let message of messages">
+                    <div class="message-author">{{ message.author }}</div>
+                    <div class="message-text">{{ message.text }}</div>
+                    <div class="message-time">{{ message.timestamp | date:'shortTime' }}</div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input-container">
+                <input type="text" [(ngModel)]="newMessage" placeholder="Type your message here" class="chat-input" (keyup.enter)="sendMessage()" />
+                <button (click)="sendMessage()" class="send-button">Send</button>
+            </div>
+        </div>
+        <!-- End Chat Room -->
+    </div>
+</div>

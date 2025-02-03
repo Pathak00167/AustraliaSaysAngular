@@ -14,6 +14,8 @@ import { userGuard } from './Guards/user.guard';
 import { UserdashboardComponent } from './userauthmanagement/userdashboard/userdashboard.component';
 import { FriendRequestComponent } from './userauthmanagement/friendsrequest/friendsrequest.component';
 import { ChatComponent } from './userauthmanagement/chat/chat.component';
+import { ChatroomComponent } from './userauthmanagement/chatroom/chatroom.component';
+import { UserprofileComponent } from './userauthmanagement/userprofile/userprofile.component';
 
 
 export const routes: Routes = [
@@ -30,5 +32,7 @@ export const routes: Routes = [
   { path: 'user-dashboard', component: UserdashboardComponent,canActivate:[userGuard] },
   {path: 'friends-request', component:FriendRequestComponent,canActivate:[userGuard]},
   {path: 'messages', component:ChatComponent,canActivate:[userGuard]},
+  {path: 'chat-room/:userid', component:ChatroomComponent,canActivate:[userGuard]},
+  {path: 'userProfile', component:UserprofileComponent,canActivate:[userGuard]},
   { path: '**', redirectTo: 'login' } 
 ];

@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class ApiService {
 
-  private apiUrl = 'http://192.168.208.217:5112/api';   //   192.168.208.217
+  private apiUrl = 'http://192.168.164.217:5112/api';   //   192.168.208.217
   constructor(private http: HttpClient) {}
 
   //#region   Admin Apis
@@ -93,6 +93,14 @@ getUserIdFromToken(): string  {
 
   EnhanceProfile(profileData: FormData): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/User/Update-UserProfile`, profileData);
+  }
+
+  GetUserProfile(userId: string): Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiUrl}/User/Get-UserProfile/${userId}`);
+  }
+
+  GetUserFriends(userId: string): Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiUrl}/User/Get-UserFriends/${userId}`);
   }
   //#endregion
 
