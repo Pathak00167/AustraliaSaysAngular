@@ -1,34 +1,33 @@
 <!-- userslist.component.html -->
 <div class="wrapper">
-    <!-- Sidebar -->
-    <app-sidenav></app-sidenav>
-    <!-- End Sidebar -->
-  
-    <div class="main-panel">
-     <app-usernav></app-usernav>
+  <!-- Sidebar -->
+  <app-sidenav></app-sidenav>
+  <!-- End Sidebar -->
+
+  <div class="main-panel">
+      <app-usernav></app-usernav>
       <div class="main-content">
-        <!-- Pending requests section -->
-        <div class="chat-list">
-            <div *ngFor="let user of users" class="chat-item">
-              <img [src]="user.imageUrl" alt="{{ user.name }}" class="user-image">
-              <div class="user-info">
-                <div class="user-header">
-                  <span class="user-name">{{ user.name }}</span>
-                  <span class="user-status" [ngClass]="{ 'online': user.online, 'offline': !user.online }">
-                    {{ user.online ? 'Online' : 'Offline' }}
-                  </span>
-                </div>
-                <div class="last-message">{{ user.lastMessage }}</div>
+          <!-- Pending requests section -->
+          <div class="chat-list">
+              <div *ngFor="let user of userFriends" class="chat-item">
+                <div class="user-card" (click)="openUserDetail(user.id)">
+                  <img
+                      [src]="apibaseurl + user?.profilePicture"
+                      class="avatar-img"
+                  />
+                  <div class="user-info">
+                      <div class="user-header">
+                          <span class="user-name">{{ user.firstName }}</span>
+                          <span class="user-status" [ngClass]="{ 'online': user.online, 'offline': !user.online }">
+                              {{ user.online ? 'Online' : 'Offline' }}
+                          </span>
+                      </div>
+                      <div class="last-message">{{ user.lastMessage || 'No new messages ' }} </div>
+                  </div>
               </div>
-            </div>
+              
+              </div>
           </div>
-        
-        
-        
-    </div>
-     
-      
+      </div>
   </div>
-
-
-
+</div>

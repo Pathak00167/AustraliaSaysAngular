@@ -1,0 +1,73 @@
+.user-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+   
+    margin: 10px 0;
+   
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.user-status {
+    font-size: 14px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.user-status.online {
+    background-color: #4caf50;
+    color: white;
+}
+
+.user-status.offline {
+    background-color: #f44336;
+    color: white;
+}
+
+.last-message {
+    font-size: 14px;
+    color: #757575;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+

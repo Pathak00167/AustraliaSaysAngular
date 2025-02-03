@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../api.service';
 import { ToastrService } from 'ngx-toastr';
 import { ChatHubService } from '../../Services/chat-hub.service';
+import { UsernavComponent } from '../usernav/usernav.component';
 
 @Component({
   selector: 'app-friendsrequest',
   standalone: true,
-  imports: [CommonModule,NavComponent,SidenavComponent],
+  imports: [CommonModule,SidenavComponent,UsernavComponent],
   templateUrl: './friendsrequest.component.html',
   styleUrl: './friendsrequest.component.css'
 })
@@ -18,7 +19,7 @@ export class FriendRequestComponent implements OnInit {
   pendingRequests: any[] = [];
   usersToSendRequest: any[] = [];
   userId: string = "";
-  baseurl:string="http://192.168.250.217:5112/"  // 192.168.26.217
+  baseurl:string="http://192.168.164.217:5112/"  // 192.168.26.217
   senderId:string="";
   recieverId:string="";
   sentRequests: { [userId: string]: boolean } = {};
@@ -62,7 +63,7 @@ export class FriendRequestComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching random users:', error);
-        this.toastrService.error('Failed to load random users');
+        this.toastrService.error('Failed to load recent chats');
       }
      })
     ];
