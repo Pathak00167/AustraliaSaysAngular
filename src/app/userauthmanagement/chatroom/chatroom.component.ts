@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { UsernavComponent } from '../usernav/usernav.component';
-import { SidenavComponent } from '../../pages/sidenav/sidenav.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chatroom',
   standalone: true,
-  imports: [UsernavComponent,SidenavComponent,CommonModule,FormsModule],
+  imports: [UsernavComponent,CommonModule,FormsModule],
   templateUrl: './chatroom.component.html',
   styleUrl: './chatroom.component.css'
 })

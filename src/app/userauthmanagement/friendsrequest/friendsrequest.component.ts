@@ -1,17 +1,16 @@
-import { NavComponent } from './../../pages/nav/nav.component';
+
 import { HubConnection } from '@microsoft/signalr';
 import { Component,OnInit } from '@angular/core';
-import { SidenavComponent } from '../../pages/sidenav/sidenav.component';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../api.service';
 import { ToastrService } from 'ngx-toastr';
-import { ChatHubService } from '../../Services/chat-hub.service';
+import { ChatHubService } from '../../shared/Services/chat-hub.service';
 import { UsernavComponent } from '../usernav/usernav.component';
 
 @Component({
   selector: 'app-friendsrequest',
   standalone: true,
-  imports: [CommonModule,SidenavComponent,UsernavComponent],
+  imports: [CommonModule,UsernavComponent],
   templateUrl: './friendsrequest.component.html',
   styleUrl: './friendsrequest.component.css'
 })
@@ -19,7 +18,7 @@ export class FriendRequestComponent implements OnInit {
   pendingRequests: any[] = [];
   usersToSendRequest: any[] = [];
   userId: string = "";
-  baseurl:string="http://192.168.164.217:5112/"  // 192.168.26.217
+  baseurl:string="http://192.168.137.217:5112/"  // 192.168.26.217
   senderId:string="";
   recieverId:string="";
   sentRequests: { [userId: string]: boolean } = {};

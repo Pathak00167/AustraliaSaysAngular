@@ -1,7 +1,6 @@
-<!-- chatroom.component.html -->
 <div class="wrapper">
     <!-- Sidebar -->
-    <app-sidenav></app-sidenav>
+   
     <!-- End Sidebar -->
 
     <div class="main-panel">
@@ -11,8 +10,7 @@
         <div class="chat-room-container">
             <!-- Chat Messages -->
             <div class="chat-messages" id="chatMessages">
-                <div class="message" *ngFor="let message of messages">
-                    <div class="message-author">{{ message.author }}</div>
+                <div class="message" *ngFor="let message of messages" [ngClass]="{'sent': message.author === 'Me', 'received': message.author !== 'Me'}">
                     <div class="message-text">{{ message.text }}</div>
                     <div class="message-time">{{ message.timestamp | date:'shortTime' }}</div>
                 </div>
@@ -20,8 +18,10 @@
 
             <!-- Chat Input -->
             <div class="chat-input-container">
-                <input type="text" [(ngModel)]="newMessage" placeholder="Type your message here" class="chat-input" (keyup.enter)="sendMessage()" />
-                <button (click)="sendMessage()" class="send-button">Send</button>
+                <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..." class="chat-input" (keyup.enter)="sendMessage()" />
+                <button (click)="sendMessage()" class="send-button">
+                    <i class="fa fa-paper-plane"></i> <!-- FontAwesome icon -->
+                </button>
             </div>
         </div>
         <!-- End Chat Room -->

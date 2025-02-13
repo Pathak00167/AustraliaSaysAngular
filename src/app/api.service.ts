@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class ApiService {
 
-  private apiUrl = 'http://192.168.164.217:5112/api';   //   192.168.208.217
+  private apiUrl = 'http://192.168.137.217:5112/api';   //   192.168.208.217
   constructor(private http: HttpClient) {}
 
   //#region   Admin Apis
@@ -68,7 +68,7 @@ forgotPassword(data: any): Observable<any> {
 }
 
 getUserIdFromToken(): string  {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   if (token) {
     const decodedToken: any = jwtDecode(token);
     console.log('Decoded Token:', decodedToken);

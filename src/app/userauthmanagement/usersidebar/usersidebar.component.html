@@ -1,106 +1,143 @@
-<!-- <div class="sidebar" id="sidebar">
-  <a href="user-dashboard"><i class="fas fa-home"></i> News Feed</a>
-  <a href="friends-request"><i class="fas fa-user-friends"></i> Friends</a>
-  <a href="#"><i class="fas fa-comment-dots"></i> Messages</a>
-  <a href="#"><i class="fas fa-bell"></i> Notifications</a>
-</div> -->
-
-<div class="sidebar" data-background-color="dark">
-    <div class="sidebar-logo">
-      <!-- Logo Header -->
-      <div class="logo-header" data-background-color="dark">
-        <a href="index.html" class="logo">
-          <img
-            src="assets/img/kaiadmin/logo_light.svg"
-            alt="navbar brand"
-            class="navbar-brand"
-            height="20"
-          />
-        </a>
-        <div class="nav-toggle">
-          <button class="btn btn-toggle toggle-sidebar">
-            <i class="gg-menu-right"></i>
-          </button>
-          <button class="btn btn-toggle sidenav-toggler">
-            <i class="gg-menu-left"></i>
-          </button>
-        </div>
-        <button class="topbar-toggler more">
-          <i class="gg-more-vertical-alt"></i>
-        </button>
-      </div>
-      <!-- End Logo Header -->
-    </div>
-    <div class="sidebar-wrapper scrollbar scrollbar-inner">
-      <div class="sidebar-content">
-        <ul class="nav nav-secondary">
-          <li class="nav-item active">
-            <a
-              data-bs-toggle="collapse"
-              [routerLink]="['dashboard']"
-              class="collapsed"
-              aria-expanded="false"
-            >
-              <i class="fas fa-home"></i>
-              <p>Dashboard</p>
-              <span class="caret"></span>
-            </a>
-            <div class="collapse" id="dashboard">
-              <ul class="nav nav-collapse">
-                <li>
-                  <a [routerLink]="['dashboard']">
-                    <span class="sub-item">Dashboard</span>
-                  </a>
-                </li>
-                <li>
-                  <a [routerLink]="['userslist']">
-                    <span class="sub-item">UsersList</span>
-                  </a>
-                </li>
-                <li>
-                    <a [routerLink]="['categorieslist']">
-                      <span class="sub-item">CategoryList</span>
-                    </a>
+<div class="scrollbar-sidebar">
+  <div class="app-sidebar__inner">
+      <ul class="vertical-nav-menu">
+          <li class="app-sidebar__heading">Menu</li>
+          <li class="mm-active">
+              <a rou="user-dashboard">
+                  <i class="metismenu-icon pe-7s-rocket"></i>
+                  Dashboards
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul class="mm-show">
+                  <li>
+                      <a routerLink="dashboard">
+                          <i class="metismenu-icon"></i>
+                          Analytics
+                      </a>
                   </li>
                   <li>
-                    <a [routerLink]="['articles']">
-                      <span class="sub-item">Articles</span>
-                    </a>
+                      <a href="dashboards-commerce.html">
+                          <i class="metismenu-icon"></i>
+                          Commerce
+                      </a>
+                  </li>
+                  <li>
+                      <a href="dashboards-sales.html">
+                          <i class="metismenu-icon"></i>
+                          Sales
+                      </a>
+                  </li>
+                  <li class="mm-active">
+                      <a href="#">
+                          <i class="metismenu-icon"></i>
+                          Minimal
+                          <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                      </a>
+                      <ul class="mm-show">
+                          <li>
+                              <a href="dashboards-minimal-1.html" class="mm-active">
+                                  <i class="metismenu-icon"></i>
+                                  Variation 1
+                              </a>
+                          </li>
+                          <li>
+                              <a href="dashboards-minimal-2.html">
+                                  <i class="metismenu-icon"></i>
+                                  Variation 2
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="dashboards-crm.html">
+                          <i class="metismenu-icon"></i>
+                          CRM
+                      </a>
                   </li>
               </ul>
-            </div>
           </li>
-          <li class="nav-section">
-            <span class="sidebar-mini-icon">
-              <i class="fa fa-ellipsis-h"></i>
-            </span>
-          
-          </li>
-       
-        
-            <a data-bs-toggle="collapse" href="#sidebarLayouts">
-              <i class="fas fa-th-list"></i>
-              <p>Sidebar Layouts</p>
-              <span class="caret"></span>
-            </a>
-            <div class="collapse" id="sidebarLayouts">
-              <ul class="nav nav-collapse">
-                <li>
-                  <a href="sidebar-style-2.html">
-                    <span class="sub-item">Sidebar Style 2</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="icon-menu.html">
-                    <span class="sub-item">Icon Menu</span>
-                  </a>
-                </li>
+          <li>
+              <a href="#">
+                  <i class="metismenu-icon pe-7s-browser"></i>
+                  Pages
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                  <li>
+                      <a href="pages-login.html">
+                          <i class="metismenu-icon"></i>
+                          Login
+                      </a>
+                  </li>
+                  <li>
+                      <a href="pages-login-boxed.html">
+                          <i class="metismenu-icon"></i>
+                          Login Boxed
+                      </a>
+                  </li>
+                  <li>
+                      <a href="pages-register.html">
+                          <i class="metismenu-icon"></i>
+                          Register
+                      </a>
+                  </li>
+                  <li>
+                      <a href="pages-register-boxed.html">
+                          <i class="metismenu-icon"></i>
+                          Register Boxed
+                      </a>
+                  </li>
+                  <li>
+                      <a href="pages-forgot-password.html">
+                          <i class="metismenu-icon"></i>
+                          Forgot Password
+                      </a>
+                  </li>
+                  <li>
+                      <a href="pages-forgot-password-boxed.html">
+                          <i class="metismenu-icon"></i>
+                          Forgot Password Boxed
+                      </a>
+                  </li>
               </ul>
-            </div>
+          </li>
+          <li>
+              <a href="#">
+                  <i class="metismenu-icon pe-7s-plugin"></i>
+                  Applications
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+              </a>
+              <ul>
+                  <li>
+                      <a href="apps-mailbox.html">
+                          <i class="metismenu-icon"></i>
+                          Mailbox
+                      </a>
+                  </li>
+                  <li>
+                      <a href="apps-chat.html">
+                          <i class="metismenu-icon"></i>
+                          Chat
+                      </a>
+                  </li>
+                  <li>
+                      <a href="apps-faq-section.html">
+                          <i class="metismenu-icon"></i>
+                          FAQ Section
+                      </a>
+                  </li>
+                 
+              </ul>
+          </li>
+          
         
          
-     
-        </ul>
-      </div>
-    </div>
+         
+         
+         
+         
+         
+         
+      </ul>
   </div>
+</div>
