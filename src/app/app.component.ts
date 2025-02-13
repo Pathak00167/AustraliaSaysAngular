@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Observable } from 'rxjs';
 import { UserdashboardComponent } from "./userauthmanagement/userdashboard/userdashboard.component";
-import { ChatHubService } from './Services/chat-hub.service';
+import { ChatHubService } from './shared/Services/chat-hub.service';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from './shared/notification.service';
 

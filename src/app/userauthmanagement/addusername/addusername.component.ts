@@ -2,7 +2,7 @@ import { ApiService } from './../../api.service';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule,FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegistrationprocessService } from '../../Services/registrationprocess.service';
+import { RegistrationprocessService } from '../../shared/Services/registrationprocess.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

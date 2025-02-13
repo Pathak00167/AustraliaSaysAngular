@@ -1,11 +1,6 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component'; 
-import { DashboardComponent } from './pages/dashboard/dashboard.component';  
-import { UserslistComponent } from './pages/userslist/userslist.component';
-import { adminGuard } from './admin.guard'; 
+import { LoginComponent } from './userauthmanagement/login/login.component';
 import { RegistrationGuard } from './Guards/registration.guard';
-import { CategoriesComponent } from './pages/categories/categories.component';
-import { ArticlesComponent } from './pages/articles/articles.component';
 import { RegisteruserComponent } from './userauthmanagement/registeruser/registeruser.component';
 import { OtpverificationComponent } from './userauthmanagement/otpverification/otpverification.component';
 import { AddusernameComponent } from './userauthmanagement/addusername/addusername.component';
@@ -21,10 +16,6 @@ import { UserprofileComponent } from './userauthmanagement/userprofile/userprofi
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, 
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent,canActivate:[adminGuard] }, 
-  { path: 'userslist', component: UserslistComponent,canActivate:[adminGuard] },
-  { path: 'categorieslist', component: CategoriesComponent,canActivate:[adminGuard] },
-  {path: 'articles', component:ArticlesComponent,canActivate:[adminGuard]},
   { path: 'registeruser', component: RegisteruserComponent },
   { path: 'otp-verification', component: OtpverificationComponent,canActivate:[RegistrationGuard], data: { stepRequired: 1 }},
   { path: 'add-username', component: AddusernameComponent,canActivate:[RegistrationGuard] , data: { stepRequired: 2 }},

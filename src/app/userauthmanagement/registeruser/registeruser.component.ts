@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ApiService } from '../../api.service';   // Import your ApiService
 import { ToastrService } from 'ngx-toastr';  // Assuming Toastr for feedback
-import { RegistrationprocessService } from '../../Services/registrationprocess.service';
+import { RegistrationprocessService } from '../../shared/Services/registrationprocess.service';
 
 @Component({
   selector: 'app-registeruser',

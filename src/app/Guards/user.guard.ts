@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 export const userGuard: CanActivateFn = (route, state) => {
-  const role = localStorage.getItem('role');
+  const role = sessionStorage.getItem('role');
   
   if (role === 'User') {
     return true;  

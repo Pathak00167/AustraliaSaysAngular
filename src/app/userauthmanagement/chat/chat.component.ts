@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { UsernavComponent } from '../usernav/usernav.component';
 import { CommonModule } from '@angular/common';
-import { SidenavComponent } from '../../pages/sidenav/sidenav.component';
+
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule,UsernavComponent,SidenavComponent],
+  imports: [CommonModule,UsernavComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
 export class ChatComponent implements OnInit {
   userFriends: any[] = [];
   userId:string=''
-  apibaseurl:string="http://192.168.28.217:5112/"
+  apibaseurl:string="http://192.168.137.217:5112/"  //192.168.137.217
 constructor( 
   private apiService:ApiService,private toastrService:ToastrService,private router: Router
 ){

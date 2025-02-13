@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '../../api.service';
 import { ToastrService } from 'ngx-toastr';
-import { RegistrationprocessService } from '../../Services/registrationprocess.service'; 
+import { RegistrationprocessService } from '../../shared/Services/registrationprocess.service'; 
 
 @Component({
   selector: 'app-enhanceprofile',
