@@ -16,6 +16,7 @@ $(document).ready(() => {
   $(".search-wrapper .close").click(function () {
     $(this).parent().removeClass("active");
   });
+  
 
   // BS4 Popover
 

@@ -1,33 +1,264 @@
-<!-- userslist.component.html -->
-<div class="wrapper">
-  <!-- Sidebar -->
- 
-  <!-- End Sidebar -->
-
-  <div class="main-panel">
-      <app-usernav></app-usernav>
-      <div class="main-content">
-          <!-- Pending requests section -->
-          <div class="chat-list">
-              <div *ngFor="let user of userFriends" class="chat-item">
-                <div class="user-card" (click)="openUserDetail(user.id)">
-                  <img
-                      [src]="apibaseurl + user?.profilePicture"
-                      class="avatar-img"
-                  />
-                  <div class="user-info">
-                      <div class="user-header">
-                          <span class="user-name">{{ user.firstName }}</span>
-                          <span class="user-status" [ngClass]="{ 'online': user.online, 'offline': !user.online }">
-                              {{ user.online ? 'Online' : 'Offline' }}
-                          </span>
-                      </div>
-                      <div class="last-message">{{ user.lastMessage || 'No new messages ' }} </div>
-                  </div>
-              </div>
-              
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Language" content="en">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Minimal Dashboard - Examples of just how powerful ArchitectUI really is!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+        <meta name="description" content="Examples of just how powerful ArchitectUI really is!">
+        <link rel="stylesheet" href="/vendors/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/vendors/ionicons-npm/css/ionicons.css">
+  <link rel="stylesheet" href="/vendors/linearicons-master/dist/web-font/style.css">
+  <link rel="stylesheet" href="/vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css">
+  <link href="/styles/css/base.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+           <app-usernav></app-usernav>
+           
+            <div class="app-main">
+                <div class="app-sidebar sidebar-shadow">
+                    <div class="app-header__logo">
+                        <div class="logo-src"></div>
+                        <div class="header__pane ml-auto">
+                            <div>
+                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                    <span class="hamburger-box">
+                                        <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   <app-usersidebar></app-usersidebar>
+                </div>
+                <div class="app-main__outer">
+                  <div class="app-inner-layout__sidebar card">
+                                    <div class="app-inner-layout__sidebar-header">
+                                        <ul class="nav flex-column">
+                                            <li class="pt-4 pl-3 pr-3 pb-3 nav-item">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fa fa-search"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input placeholder="Search..." type="text" class="form-control">
+                                                </div>
+                                            </li>
+                                            <li class="nav-item-header nav-item">Friends Online</li>
+                                        </ul>
+                                    </div>
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <button type="button" tabindex="0" class="dropdown-item">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="avatar-icon-wrapper">
+                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                                <div class="avatar-icon">
+                                                                    <img src="images/avatars/2.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading">Alina Mcloughlin</div>
+                                                            <div class="widget-subheading">Aenean vulputate eleifend tellus.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" tabindex="0" class="dropdown-item active">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="avatar-icon-wrapper">
+                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                                <div class="avatar-icon">
+                                                                    <img src="images/avatars/3.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading">Chad Evans</div>
+                                                            <div class="widget-subheading">Vivamus elementum semper nisi.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" tabindex="0" class="dropdown-item">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="avatar-icon-wrapper">
+                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                                <div class="avatar-icon">
+                                                                    <img src="images/avatars/3.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading">Ella-Rose Henry</div>
+                                                            <div class="widget-subheading">Etiam sit amet orci eget eros faucibus</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" tabindex="0" class="dropdown-item">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="avatar-icon-wrapper">
+                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                                <div class="avatar-icon">
+                                                                    <img src="images/avatars/2.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading">Ruben Tillman</div>
+                                                            <div class="widget-subheading">
+                                                                Lorem ipsum dolor sit amet, consectetuer
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" tabindex="0" class="dropdown-item">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="avatar-icon-wrapper">
+                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                                <div class="avatar-icon">
+                                                                    <img src="images/avatars/3.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading">Ella-Rose Henry</div>
+                                                            <div class="widget-subheading">Etiam sit amet orci eget eros faucibus</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" tabindex="0" class="dropdown-item">
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="avatar-icon-wrapper">
+                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                                <div class="avatar-icon">
+                                                                    <img src="images/avatars/2.jpg" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left">
+                                                            <div class="widget-heading">Ruben Tillman</div>
+                                                            <div class="widget-subheading">
+                                                                Lorem ipsum dolor sit amet, consectetuer
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div class="app-inner-layout__sidebar-footer pb-3">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item-divider nav-item"></li>
+                                            <li class="nav-item-header nav-item">Offline Friends</li>
+                                            <li class="text-center p-2 nav-item">
+                                                <div class="avatar-wrapper avatar-wrapper-overlap">
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/5.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/10.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/7.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/8.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/1.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/2.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/3.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper">
+                                                        <div class="badge badge-bottom badge-danger badge-dot badge-dot-lg"></div>
+                                                        <div class="avatar-icon rounded">
+                                                            <img src="images/avatars/4.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-icon-wrapper avatar-icon-add">
+                                                        <div class="avatar-icon rounded">
+                                                            <i>+</i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item-btn text-center nav-item">
+                                                <button class="btn-wide btn-pill btn btn-success btn-sm">
+                                                    Offline Group
+                                                Conversation
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                
+                    <div class="app-wrapper-footer">
+                        <app-userfooter></app-userfooter>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+      
+      
+        
+    </body>
+</html>

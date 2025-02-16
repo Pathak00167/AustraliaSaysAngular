@@ -5,12 +5,14 @@ import { CommonModule } from '@angular/common';
 
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { UserfooterComponent } from '../userfooter/userfooter.component';
+import { UsersidebarComponent } from '../usersidebar/usersidebar.component';
 
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule,UsernavComponent],
+  imports: [CommonModule,UsernavComponent,UserfooterComponent,UsersidebarComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })

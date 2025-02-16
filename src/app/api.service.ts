@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode';
 })
 export class ApiService {
 
-  private apiUrl = 'http://192.168.137.217:5112/api';   //   192.168.208.217
+  private apiUrl = 'http://192.168.47.217:5112/api';   //   192.168.208.217
   constructor(private http: HttpClient) {}
 
   //#region   Admin Apis
