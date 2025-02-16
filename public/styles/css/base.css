@@ -7381,15 +7381,15 @@ button,
 
 .app-header__logo {
   padding: 0 1.5rem;
-  height: 60px;
-  width: 280px;
+  height: auto;
+  width: auto;
   display: flex;
   align-items: center;
   transition: width .2s; }
   .app-header__logo .logo-src {
-    height: 23px;
-    width: 97px;
-    background: url("../../images/logo-inverse.png"); }
+    height: auto;
+    width: auto;
+    background: url("../../Untitled\ design\ \(1\).png"); }
 
 .app-header__menu,
 .app-header__mobile-menu {
