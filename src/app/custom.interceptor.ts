@@ -10,7 +10,7 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {debugger
   loaderService.show();
 
  
-  const mytoken =localStorage.getItem('token');
+  const mytoken =sessionStorage.getItem('token');
   const cloneRequest=req.clone({
     setHeaders:{
    Authorization: `Bearer ${mytoken}` 

@@ -192,4 +192,39 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  .app-main__container {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important; /* Adjust as needed */
+  }
+
+  .app-main .app-main__outer {
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    z-index: 12;
+}
+
+  .app-main__outer {
+    display: flex;
+    flex-direction: row; /* Ensure children are aligned horizontally */
+  }
+  
+  .app-inner-layout__sidebar {
+    width: 30% !important; /* Set sidebar width */
+    flex-shrink: 0; /* Prevent shrinking */
+    height: 44rem;
+  }
+  
+  .app-main__inner {
+    padding-left: 20px; /* Optional padding */
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: red;
+  }
+
+ 
+
+  
+
+ 
   

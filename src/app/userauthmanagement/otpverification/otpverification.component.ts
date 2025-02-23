@@ -24,7 +24,7 @@ export class OtpverificationComponent {
     private toastr: ToastrService
   ) {
     // Retrieve the email from localStorage
-    this.email = localStorage.getItem('registeredEmail');
+    this.email = sessionStorage.getItem('registeredEmail');
 
     // Initialize the form with form controls
     this.otpForm = this.fb.group({
@@ -44,8 +44,8 @@ export class OtpverificationComponent {
       this.apiService.VerifyOtp({ email: emailValue, otp: otpValue }).subscribe(
         (response) => {
           this.registrationService.verifyOtp(otpValue);
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('role', response.role);
+          sessionStorage.setItem('token', response.token);
+          sessionStorage.setItem('role', response.role);
           this.router.navigate(['/add-username']);
           this.toastr.success('OTP Verified Successfully!', 'Success');
         },
