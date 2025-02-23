@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { NotificationService } from '../../shared/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-usernav',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule],
   templateUrl: './usernav.component.html',
   styleUrl: './usernav.component.css'
 })
@@ -17,7 +18,7 @@ export class UsernavComponent {
  notifications: any[] = [];
   notificationCount: number = 0;
   userId: string = "";
-  apibaseurl:string="http://192.168.164.217:5112/"
+  apibaseurl:string=environment.apiUrl
 
   constructor(
     private apiService: ApiService,

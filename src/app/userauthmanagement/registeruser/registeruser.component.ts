@@ -41,7 +41,8 @@ export class RegisteruserComponent {
 
       this.apiService.registerUser(userData).subscribe(
         (response) => {
-          localStorage.setItem('registeredEmail', userData.email);
+          console.log(response)
+          sessionStorage.setItem('registeredEmail', userData.email);
           this.registrationService.saveStep1Data(userData.email, userData.password);
           this.toastr.success('Please Verify Your Mail!', 'Success');
           this.router.navigate(['/otp-verification']);

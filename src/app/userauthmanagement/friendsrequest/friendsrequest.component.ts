@@ -8,6 +8,7 @@ import { ChatHubService } from '../../shared/Services/chat-hub.service';
 import { UsernavComponent } from '../usernav/usernav.component';
 import { UserfooterComponent } from '../userfooter/userfooter.component';
 import { UsersidebarComponent } from '../usersidebar/usersidebar.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-friendsrequest',
@@ -20,7 +21,7 @@ export class FriendRequestComponent implements OnInit {
   pendingRequests: any[] = [];
   usersToSendRequest: any[] = [];
   userId: string = "";
-  baseurl:string="http://192.168.47.217:5112/"  // 192.168.137.217
+  baseurl:string=environment.imageUrl  //  192.168.47.217
   senderId:string="";
   recieverId:string="";
   sentRequests: { [userId: string]: boolean } = {};
