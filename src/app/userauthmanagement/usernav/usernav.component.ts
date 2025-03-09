@@ -1,52 +1,41 @@
+import { environment } from './../../../environments/environment';
 import { ApiService } from './../../api.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotificationService } from '../../shared/notification.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-usernav',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './usernav.component.html',
   styleUrl: './usernav.component.css'
 })
-export class UsernavComponent {
+export class UsernavComponent implements OnInit {
   UserProfile: any = {}; 
  notifications: any[] = [];
   notificationCount: number = 0;
   userId: string = "";
   apibaseurl:string=environment.apiUrl
+  baseurl:string=environment.imageUrl
+  
 
   constructor(
     private apiService: ApiService,
   private notificationService:NotificationService,
 private toastrService:ToastrService) {}
 
-  ngOnInit(): void {debugger
-    this.notificationService.notifications$.subscribe((notifications) => {
-      this.notifications = notifications;
-      console.log(notifications)
-    });
-   this.userId=this.apiService.getUserIdFromToken()
-   if (this.userId) {debugger
-    this.apiService.GetUserProfile(this.userId).subscribe({
-      next: (data) => {
-        this.UserProfile = data;
-        console.log(data)
-      },
-      error: (error) => {
-        console.error('Error fetching random users:', error);
-        this.toastrService.error('Failed to load random users');
-      }
-    });
-  } else {
-    this.toastrService.error('User not authenticated or invalid token');
-  }
 
-  }
+
+ngOnInit(): void {
+  // Access the user info from the signal via ApiService
+  this.UserProfile = this.apiService.getUserInfo()(); // Call the signal as a function to get its value
+  console.log('Logged-in user:', this.UserProfile);
+}
+
+  
   
 
  

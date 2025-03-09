@@ -198,14 +198,14 @@
     width: 100% !important; /* Adjust as needed */
   }
 
-  .app-main .app-main__outer {
+  .app-main .app-main__inner {
     flex: 1;
     flex-direction: row;
     display: flex;
     z-index: 12;
 }
 
-  .app-main__outer {
+  .app-main__inner {
     display: flex;
     flex-direction: row; /* Ensure children are aligned horizontally */
   }
@@ -219,7 +219,7 @@
   .app-main__inner {
     padding-left: 20px; /* Optional padding */
     flex-shrink: 0; /* Prevent shrinking */
-    background-color: red;
+  
   }
 
  

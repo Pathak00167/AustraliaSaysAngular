@@ -1,116 +1,63 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="Content-Language" content="en">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Minimal Dashboard - Examples of just how powerful ArchitectUI really is!</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
-        <meta name="description" content="Examples of just how powerful ArchitectUI really is!">
-        <link rel="stylesheet" href="/vendors/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="/vendors/ionicons-npm/css/ionicons.css">
-  <link rel="stylesheet" href="/vendors/linearicons-master/dist/web-font/style.css">
-  <link rel="stylesheet" href="/vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css">
-  <link href="/styles/css/base.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
-           <app-usernav></app-usernav>
-           
-            <div class="app-main">
-                <div class="app-sidebar sidebar-shadow">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
+<div class="app-main__inner">
+    <div class="content-section" *ngIf="pendingRequests && pendingRequests.length > 0">
+        <h6 class="mb-4 fw-bold text-dark text-center">Friend Requests:</h6>
+        <ul class="list-unstyled">
+            <li *ngFor="let request of pendingRequests">
+               
+
+                <div class="user-item d-flex align-items-center justify-content-between p-3 border rounded-lg shadow-sm bg-light">
+                    <!-- User Image -->
+                    <div class="d-flex align-items-center">
+                        <img [src]="baseurl + request.profilePicture" alt="{{ request.firstName }}" class="user-image rounded-circle img-fluid me-3" width="50" height="50">
+                        
+                        <!-- User Name -->
+                        <div class="user-details">
+                            <span class="fw-bold text-dark">{{ request.firstName }} {{ request.lastName }}</span>
+                        
                         </div>
-                    </div>
-                   
-                   <app-usersidebar></app-usersidebar>
-                </div>
-                <div class="app-main__outer">
-                    <div class="app-main__inner">
-                      
-                        <div class="content-section" *ngIf="pendingRequests && pendingRequests.length > 0">
-                            <h6 class="mb-4 fw-bold text-dark text-center">Friend Requests:</h6>
-                            <ul class="list-unstyled">
-                                <li *ngFor="let request of pendingRequests">
-                                   
-                
-                                    <div class="user-item d-flex align-items-center justify-content-between p-3 border rounded-lg shadow-sm bg-light">
-                                        <!-- User Image -->
-                                        <div class="d-flex align-items-center">
-                                            <img [src]="baseurl + request.profilePicture" alt="{{ request.firstName }}" class="user-image rounded-circle img-fluid me-3" width="50" height="50">
-                                            
-                                            <!-- User Name -->
-                                            <div class="user-details">
-                                                <span class="fw-bold text-dark">{{ request.firstName }} {{ request.lastName }}</span>
-                                            
-                                            </div>
-                                           
-                                                <button (click)="acceptRequest(request.id)" class="btn-outline-success btn btn-sm">Accept</button>
-                                                <button (click)="declineRequest(request.id)" class="btn-outline-danger btn btn-sm">Decline</button>
-                                                
-                                           
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                      
-                        <!-- Send request section -->
-                        <div class="content-section p-4 bg-white rounded shadow-lg">
-                            <h6 class="mb-4 fw-bold text-primary text-center">Send Friend Requests</h6>
-                            <ul class="list-unstyled">
-                                <li *ngFor="let user of usersToSendRequest | slice:0:5" class="mb-3">
-                                    <div class="user-item d-flex align-items-center justify-content-between p-3 border rounded-lg shadow-sm bg-light">
-                                        <!-- User Image -->
-                                        <div class="d-flex align-items-center">
-                                            <img [src]="baseurl + user.profilePicture" alt="{{ user.firstName }}" class="user-image rounded-circle img-fluid me-3" width="50" height="50">
-                                            
-                                            <!-- User Name -->
-                                            <div class="user-details">
-                                                <span class="fw-bold text-dark">{{ user.firstName }} {{ user.lastName }}</span>
-                                                <p class="small text-muted mb-0">{{ user.email }}</p> <!-- You can add additional details like email -->
-                                            </div>
-                                        </div>
-                        
-                                        <button 
-                                        class="btn btn-sm" 
-                                        [ngClass]="sentRequests[user.id] ? 'btn-outline-danger' : 'btn-outline-success'"
-                                        (click)="sentRequests[user.id] ? cancelFriendRequest(user.id) : sendFriendRequest(user.id)">
-                                        {{ sentRequests[user.id] ? 'Cancel Request' : 'Send Request' }}
-                                      </button>
-                                    </div>
-                                </li>
-                            </ul>
-                        
-                            <!-- Shuffle Users Button -->
-                            <button class="btn btn-primary mt-4 w-100 py-2" (click)="shuffleUsers()">Discover More Friends</button>
-                        </div>
-                        
-                        
-                
-                      
-                    </div>
-                
-                    <div class="app-wrapper-footer">
-                        <app-userfooter></app-userfooter>
+                       
+                            <button (click)="acceptRequest(request.id)" class="btn-outline-success btn btn-sm">Accept</button>
+                            <button (click)="declineRequest(request.id)" class="btn-outline-danger btn btn-sm">Decline</button>
+                            
+                       
                     </div>
                 </div>
-                
-                
-            </div>
-        </div>
-      
-      
-        
-    </body>
-</html>
+            </li>
+        </ul>
+    </div>
+  
+    <!-- Send request section -->
+    <div class="content-section p-4 bg-white rounded shadow-lg">
+        <h6 class="mb-4 fw-bold text-primary text-center">Send Friend Requests</h6>
+        <ul class="list-unstyled">
+            <li *ngFor="let user of usersToSendRequest | slice:0:5" class="mb-3">
+                <div class="user-item d-flex align-items-center justify-content-between p-3 border rounded-lg shadow-sm bg-light">
+                    <!-- User Image -->
+                    <div class="d-flex align-items-center">
+                        <img [src]="baseurl + user.profilePicture" alt="{{ user.firstName }}" class="user-image rounded-circle img-fluid me-3" width="50" height="50">
+                        
+                        <!-- User Name -->
+                        <div class="user-details">
+                            <span class="fw-bold text-dark">{{ user.firstName }} {{ user.lastName }}</span>
+                            <p class="small text-muted mb-0">{{ user.email }}</p> <!-- You can add additional details like email -->
+                        </div>
+                    </div>
+    
+                    <button 
+                    class="btn btn-sm" 
+                    [ngClass]="sentRequests[user.id] ? 'btn-outline-danger' : 'btn-outline-success'"
+                    (click)="sentRequests[user.id] ? cancelFriendRequest(user.id) : sendFriendRequest(user.id)">
+                    {{ sentRequests[user.id] ? 'Cancel Request' : 'Send Request' }}
+                  </button>
+                </div>
+            </li>
+        </ul>
+    
+        <!-- Shuffle Users Button -->
+        <button class="btn btn-primary mt-4 w-100 py-2" (click)="shuffleUsers()">Discover More Friends</button>
+    </div>
+    
+    
+
+  
+</div>

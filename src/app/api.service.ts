@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable,signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 import { environment } from '../environments/environment';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private apiUrl = environment.apiUrl;   //   192.168.208.217
-  constructor(private http: HttpClient) {}
+  private apiUrl = environment.apiUrl;  
+  private userInfo = signal<any[]>([]);
+  constructor(private http: HttpClient) {
+    
+  }
 
   //#region   Admin Apis
   getUsersList(): Observable<any> {
@@ -60,9 +64,24 @@ export class ApiService {
   //#endregion
   
 //#region   Authenication Apis
-login(credentials: { email: string, password: string }): Observable<any> {
-  return this.http.post<any>(`${this.apiUrl}/Auth/login`, credentials);
+//#region   Authenication Apis
+
+
+login(credentials: { email: string, password: string }): Observable<any> {debugger
+  return this.http.post<any>(`${this.apiUrl}/Auth/login`, credentials).pipe(
+    tap((response) => {
+      if (response && response.data) {
+        this.userInfo.set(response.data); // Store user data in signal
+        localStorage.setItem('userProfile', JSON.stringify(response.user));
+      }
+    })
+  );
 }
+
+getUserInfo() {
+  return this.userInfo;
+}
+
 
 forgotPassword(data: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/forgot-password`, data);

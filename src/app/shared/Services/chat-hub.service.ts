@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root' 
 })
 export class ChatHubService {
-  private apiUrl = 'http://192.168.47.217:5112';  //  192.168.47.217
+  private apiUrl = environment.apiUrl  //  192.168.47.217
   
   public hubConnection!: HubConnection; 
   constructor() {}
 
   public startConnection(): void {
     debugger;
-    const token = localStorage.getItem("token"); 
+    const token = sessionStorage.getItem("token"); 
   
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${this.apiUrl}/hub`, {
