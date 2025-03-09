@@ -1,98 +1,52 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="Content-Language" content="en">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Minimal Dashboard - Examples of just how powerful ArchitectUI really is!</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
-        <meta name="description" content="Examples of just how powerful ArchitectUI really is!">
-        <link rel="stylesheet" href="/vendors/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="/vendors/ionicons-npm/css/ionicons.css">
-  <link rel="stylesheet" href="/vendors/linearicons-master/dist/web-font/style.css">
-  <link rel="stylesheet" href="/vendors/pixeden-stroke-7-icon-master/pe-icon-7-stroke/dist/pe-icon-7-stroke.css">
-  <link href="/styles/css/base.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
-           <app-usernav></app-usernav>
-           
-            <div class="app-main">
-                <div class="app-sidebar sidebar-shadow">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                   
-                   <app-usersidebar></app-usersidebar>
-                </div>
-                <div class="app-main__outer">
-                  <div class="app-inner-layout__sidebar card">
-                                  
-                                        <ul class="nav flex-column">
-                                            <li class="pt-4 pl-3 pr-3 pb-3 nav-item">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fa fa-search"></i>
-                                                        </div>
-                                                    </div>
-                                                    <input placeholder="Search..." type="text" class="form-control">
-                                                </div>
-                                            </li>
-                                            <li class="nav-item-header nav-item">Friends Online</li>
-                                        </ul>
-                                  
-                                    <ul class="nav flex-column">
-                                        <li *ngFor="let user of userFriends" class="nav-item">
-                                            <button type="button" tabindex="0" class="dropdown-item">
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="avatar-icon-wrapper">
-                                                                <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
-                                                                <div class="avatar-icon">
-                                                                    <img [src]="apibaseurl + user.profilePicture" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left">
-                                                            <div class="widget-heading">{{ user.firstName }} {{ user.lastName }}</div>
-                                                            <div class="widget-subheading">{{user.bio}}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        </li>
-                                      
-                                    </ul>
-                                  
-                                </div>
-                        <app-chatroom style="width: 70%;" ></app-chatroom>
-                
-                <div>
+<div class="app-main__inner">
+        <div class="app-inner-layout__sidebar card">
+                        
+                              <ul class="nav flex-column">
+                                  <li class="pt-4 pl-3 pr-3 pb-3 nav-item">
+                                      <div class="input-group">
+                                          <div class="input-group-prepend">
+                                              <div class="input-group-text">
+                                                  <i class="fa fa-search"></i>
+                                              </div>
+                                          </div>
+                                          <input placeholder="Search..." type="text" class="form-control">
+                                      </div>
+                                  </li>
+                                  <li class="nav-item-header nav-item">Friends Online</li>
+                              </ul>
+                        
+                          <ul class="nav flex-column">
+                              <li *ngFor="let user of userFriends" class="nav-item">
+                                  <button type="button" tabindex="0" class="dropdown-item">
+                                      <div class="widget-content p-0">
+                                          <div class="widget-content-wrapper">
+                                              <div class="widget-content-left mr-3">
+                                                  <div class="avatar-icon-wrapper">
+                                                      <div class="badge badge-bottom badge-success badge-dot badge-dot-lg"></div>
+                                                      <div class="avatar-icon">
+                                                          <img [src]="apibaseurl + user.profilePicture" alt="">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="widget-content-left">
+                                                  <div class="widget-heading">{{ user.firstName }} {{ user.lastName }}</div>
+                                                  <div class="widget-subheading">{{user.bio}}</div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </button>
+                              </li>
+                            
+                          </ul>
+                        
+                      </div>
+              <app-chatroom style="width: 70%;" ></app-chatroom>
+      
+      <div>
 
-             </div>
-                   
-        </div>
-                
-                
-     </div>
-            <div class="app-wrapper-footer">
-                <app-userfooter></app-userfooter>
-            </div>
-        </div>
-      
-      
-        
-    </body>
-</html>
+   </div>
+         
+</div>
+    
+    
+
